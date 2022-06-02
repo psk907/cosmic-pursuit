@@ -16,6 +16,9 @@ module.exports = function (db){
     app.get("/clues/getAllClues",(req,res)=>{
         require("./api/clues/getAllClues")(req,res,db);
     })
+    app.get("/clues/getClue",(req,res)=>{
+        require("./api/clues/getClue")(req,res,db);
+    })
     app.post("/clues/postClue",(req,res)=>{
         require("./api/clues/postClue")(req,res,db);
     })
