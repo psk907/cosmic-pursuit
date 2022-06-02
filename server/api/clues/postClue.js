@@ -4,11 +4,20 @@ module.exports = async function (req, res, db) {
 
         /**
          *  Required params
-         *  clueId: The id of the clue.
+         *  clueid: The id of the clue.
          *  solution: The solution of the clue (Might be QR Code string).
          *  body : The html body of the clue. 
-         *  img_urls : An array of urls to images.
+         *  imgurls : An array of urls to images.
          */
+        let params = ["clueid", "solution", "body", "imgurls"];
+        console.log(req.body)
+        for(let param of params){
+            if(!req.body[param]){
+                res.status(400).send("Missing parameter: " + param);
+                return;
+            }
+        }
+        res.status(200).send("Successfully updated/added clue.");
     }
     catch(err){
         console.log(err)
