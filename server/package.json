@@ -1,0 +1,16 @@
+{
+  "name": "treasure-hunt-server",
+  "version": "1.0.0",
+  "description": "Backend Server for STARDUST Treasure Hunt",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "firebase": "^9.8.2"
+  }
+}
