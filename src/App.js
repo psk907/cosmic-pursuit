@@ -1,11 +1,14 @@
 import './App.css';
+import { LoginPage } from './components/LoginForm';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+
 
 const App = () => {
-  return (
-    <div className="App">
-    <h1>Hello World</h1>
-    </div>
-  );
+    return (
+        <ChakraProvider>
+          <LoginPage />
+        </ChakraProvider>
+      )
 }
 
 export default App;
