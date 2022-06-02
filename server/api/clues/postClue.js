@@ -5,6 +5,9 @@ module.exports = async function (req, res, db) {
         /**
          *  Required params
          *  clueId: The id of the clue.
+         *  solution: The solution of the clue (Might be QR Code string).
+         *  body : The html body of the clue. 
+         *  img_urls : An array of urls to images.
          */
     }
     catch(err){

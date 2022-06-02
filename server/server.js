@@ -11,6 +11,11 @@ module.exports = function (db){
     app.get("/teams/getTeams",(req,res)=>{
         require("./api/teams/getTeams")(req,res,db);
     })
+
+
+    app.get("/clues/getAllClues",(req,res)=>{
+        require("./api/clues/getAllClues")(req,res,db);
+    })
   
     app.listen(PORT, () => {
         console.log(`STARDUST Game Server listening on port ${PORT}`);
