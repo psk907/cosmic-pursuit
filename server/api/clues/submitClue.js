@@ -1,1 +1,0 @@
-/// This function is used by the participant to submit a clue.
