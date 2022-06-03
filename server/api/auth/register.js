@@ -32,7 +32,7 @@ module.exports = async function register(req, res, db) {
           cid: "cid11",
           isUnlocked: true,
           crackedClue: false,
-          hasSolvedQuestion: false,
+          crackedRiddle: false,
         },
       ],
     };

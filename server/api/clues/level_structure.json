@@ -5,7 +5,7 @@
     "locationPoints": 5,
     "riddlePoints": 12,
     "keys": ["Key11", "Key12", "Key13"],
-    "questions": [
+    "riddles": [
       {
         "key": "Key11",
         "answer": "Answer11",
@@ -29,7 +29,7 @@
     "locationPoints": 25,
     "riddlePoints": 50,
     "keys": ["Key21", "Key22"],
-    "questions": [
+    "riddles": [
       {
         "key": "Key21",
         "answer": "Answer21",
@@ -48,7 +48,7 @@
     "locationPoints": 25,
     "riddlePoints": 50,
     "keys": ["Key31"],
-    "questions": [
+    "riddles": [
       {
         "key": "Key31",
         "answer": "Answer31",
@@ -62,7 +62,7 @@
     "locationPoints": 25,
     "riddlePoints": 50,
     "keys": ["Key41"],
-    "questions": [
+    "riddles": [
       {
         "key": "Key41",
         "answer": "Answer41",
