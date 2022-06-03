@@ -27,7 +27,14 @@ module.exports = async function register(req, res, db) {
       password: password,
       uid: uid,
       score: 0.0,
-      unlockedClues: [],
+      unlockedClues: [
+        {
+          cid: "cid11",
+          isUnlocked: true,
+          crackedClue: false,
+          hasSolvedQuestion: false,
+        },
+      ],
     };
 
     let result = await db.collection("teams").insertOne(teamData);

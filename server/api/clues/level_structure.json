@@ -1,0 +1,73 @@
+[
+  {
+    "level": 1,
+    "clues": ["cid11"],
+    "locationPoints": 5,
+    "riddlePoints": 12,
+    "keys": ["Key11", "Key12", "Key13"],
+    "questions": [
+      {
+        "key": "Key11",
+        "answer": "Answer11",
+        "followClueId": "cid21"
+      },
+      {
+        "key": "Key12",
+        "answer": "Answer12",
+        "followClueId": "cid22"
+      },
+      {
+        "key": "Key13",
+        "answer": "Answer13",
+        "followClueId": "cid23"
+      }
+    ]
+  },
+  {
+    "level": 2,
+    "clues": ["cid21", "cid22", "cid23"],
+    "locationPoints": 25,
+    "riddlePoints": 50,
+    "keys": ["Key21", "Key22"],
+    "questions": [
+      {
+        "key": "Key21",
+        "answer": "Answer21",
+        "followClueId": "cid31"
+      },
+      {
+        "key": "Key22",
+        "answer": "Answer22",
+        "followClueId": "cid32"
+      }
+    ]
+  },
+  {
+    "level": 3,
+    "clues": ["cid31"],
+    "locationPoints": 25,
+    "riddlePoints": 50,
+    "keys": ["Key31"],
+    "questions": [
+      {
+        "key": "Key31",
+        "answer": "Answer31",
+        "followClueId": "cid41"
+      }
+    ]
+  },
+  {
+    "level": 4,
+    "clues": ["cid41"],
+    "locationPoints": 25,
+    "riddlePoints": 50,
+    "keys": ["Key41"],
+    "questions": [
+      {
+        "key": "Key41",
+        "answer": "Answer41",
+        "followClueId": ""
+      }
+    ]
+  }
+]
