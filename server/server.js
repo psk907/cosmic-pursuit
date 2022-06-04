@@ -44,6 +44,10 @@ module.exports = function (db) {
   app.post("/clues/validateQRKey", (req, res) => {
     require("./api/clues/validateQRKey")(req, res, db);
   });
+  app.post("/clues/submitRiddleAnswer", (req, res) => {
+    require("./api/clues/submitRiddleAnswer")(req, res, db);
+  });
+
   app.listen(PORT, () => {
     console.log(`STARDUST Game Server listening on port ${PORT}`);
   });
