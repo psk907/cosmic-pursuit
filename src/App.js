@@ -1,14 +1,13 @@
-import './App.css';
-import { LoginPage } from './components/LoginForm';
+import "./App.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-
+import LoginPage from "./pages/loginPage";
 
 const App = () => {
-    return (
-        <ChakraProvider>
-          <LoginPage />
-        </ChakraProvider>
-      )
-}
+  return (
+    <ChakraProvider>
+      <LoginPage></LoginPage>
+    </ChakraProvider>
+  );
+};
 
 export default App;

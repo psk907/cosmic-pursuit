@@ -1,95 +1,51 @@
-import React from 'react'
 import {
-  ThemeProvider,
-  theme,
-  ColorModeProvider,
-  CSSReset,
   Box,
-  Flex,
-  IconButton,
-  useColorMode,
-  Heading,
-  Text,
-  Link,
+  Button,
   FormControl,
   FormLabel,
+  Heading,
   Input,
-  Button
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
+import MainPanel from "./MainPanel";
+import MainPanelChild from "./MainPanelChild";
 
-
-export const LoginPage = () => {
+export const LoginArea = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <ColorModeProvider>
-        <CSSReset />
-        <LoginArea />
-      </ColorModeProvider>
-    </ThemeProvider>
-  )
-}
-
-const LoginArea = () => {
-  return (
-    <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
-      <Box 
-        borderWidth={1}
-        px={4}
-        width='90vw'
-        maxWidth='500px'
-        borderRadius={10}
-        textAlign='center'
-        boxShadow='lg'
-      >
-        <ThemeSelector />
-        <Box p={4}>
-          <LoginHeader />
-          <LoginForm />
-        </Box>
-      </Box>
-    </Flex>
-  )
-}
-
-const ThemeSelector = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
-
-  return (
-    <Box textAlign='right' py={4}>
-      <IconButton
-        icon={colorMode === 'light' ? 'moon' : 'sun'}
-        onClick={toggleColorMode}
-        variant='ghost'
-      />
-    </Box>
-  )
-}
+    <MainPanel>
+      <MainPanelChild>
+        <LoginHeader />
+        <LoginForm />
+      </MainPanelChild>
+    </MainPanel>
+  );
+};
 
 const LoginHeader = () => {
   return (
-    <Box textAlign='center'>
-      <Heading>Sign In</Heading>
+    <Box textAlign="center">
+      <Heading color={"white"}>Sign In</Heading>
     </Box>
-  )
-}
+  );
+};
 
 const LoginForm = () => {
   return (
-    <Box my={8} textAlign='left'>
+    <Box my={8} textAlign="left">
       <form>
-
         <FormControl>
-          <FormLabel>Team ID</FormLabel>
-          <Input type='number' placeholder='Enter your Team ID' />
+          <FormLabel color={"white"}>Team ID</FormLabel>
+          <Input type="number" placeholder="Enter your Team ID" />
         </FormControl>
 
         <FormControl mt={4}>
-          <FormLabel>Password</FormLabel>
-          <Input type='password' placeholder='Enter your password' />
+          <FormLabel color={"white"}>Password</FormLabel>
+          <Input type="password" placeholder="Enter your password" />
         </FormControl>
 
-        <Button width='full' mt={4}>Sign In</Button>
+        <Button width="full" mt={4}>
+          Sign In
+        </Button>
       </form>
     </Box>
-  )
-}
+  );
+};
