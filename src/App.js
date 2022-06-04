@@ -1,8 +1,8 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import "./App.css";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import LoginPage from "./pages/loginPage";
-import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { Navbar } from "./components/Navbar";
+import LoginPage from "./pages/loginPage";
 
 const App = () => {
   return (

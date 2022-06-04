@@ -1,31 +1,30 @@
-import { Center, Flex, IconButton, Image } from "@chakra-ui/react";
-import React, { useState } from "react";
-import Modal from "react-modal";
-import CloseIcon from "../assets/close_icon.svg";
-import EventTitle from "../assets/cosmic_pursuit.png";
+import { Button, Flex, IconButton, Image } from "@chakra-ui/react";
+import { useState } from "react";
 import HelpIcon from "../assets/help_icon.svg";
 import LeaderBoardIcon from "../assets/leaderboard_icon.svg";
 import MapIcon from "../assets/map_icon.svg";
-import MainPanel from "./MainPanel";
-import MainPanelChild from "./MainPanelChild";
+import { ClueModal } from "./Modal";
+import eventLogo from "../assets/cosmic_pursuit.png";
 
-Modal.setAppElement("#root");
+export const Navbar = () => {
+  const [show, setshow] = useState(false);
+  const showModal = (event) => {
+    setshow(true);
+  };
 
-export const Navbar = (props) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const hideModal = (event) => {
+    setshow(false);
+  };
 
   return (
     <Flex w="100%" pos="fixed" zIndex="100" px="2">
       <Image
-        src={EventTitle}
-        pl="3"
-        pt="1"
-        height="4vh"
+        src={eventLogo}
+        ml="3"
+        mt="1"
+        height="5vh"
         alignSelf="center"
       ></Image>
-      {/* <Button colorScheme={'yellow'} variant='solid' mt={2} mx={2}>
-      {props.name}
-      </Button> */}
       <Flex
         position="relative"
         pr={3}
@@ -39,7 +38,7 @@ export const Navbar = (props) => {
           <IconButton
             colorScheme="whiteAlpha"
             isRound="true"
-            onClick={() => setModalIsOpen(true)}
+            onClick={showModal}
           >
             <Image height="5vh" src={HelpIcon}></Image>
           </IconButton>
@@ -49,7 +48,7 @@ export const Navbar = (props) => {
           <IconButton
             colorScheme="whiteAlpha"
             isRound="true"
-            onClick={() => setModalIsOpen(true)}
+            onClick={showModal}
           >
             <Image height="5vh" src={MapIcon}></Image>
           </IconButton>
@@ -59,31 +58,13 @@ export const Navbar = (props) => {
           <IconButton
             colorScheme="whiteAlpha"
             isRound="true"
-            onClick={() => setModalIsOpen(true)}
+            onClick={showModal}
           >
             <Image height="5vh" src={LeaderBoardIcon}></Image>
           </IconButton>
         </Flex>
 
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={() => setModalIsOpen(false)}
-          className="ReactModal__Overlay"
-        >
-          <Center>
-            <MainPanel>
-              <MainPanelChild>
-                <IconButton
-                  colorScheme="BlackAlpha"
-                  isRound="true"
-                  onClick={() => setModalIsOpen(false)}
-                >
-                  <Image height="5vh" src={CloseIcon}></Image>
-                </IconButton>
-              </MainPanelChild>
-            </MainPanel>
-          </Center>
-        </Modal>
+        <ClueModal show={show} handleClose={hideModal}></ClueModal>
       </Flex>
     </Flex>
   );
