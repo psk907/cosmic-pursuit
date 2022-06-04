@@ -8,11 +8,13 @@
         "unlockedClues": [
           {
             "clueId": "cid11",
+            "level":1,
             "isUnlocked": true,
             "crackedClue": false,
             "crackedRiddle": false,
             "crackedClueTimeStamp":"",
             "crackedRiddleTimeStamp":"",
+            "scanKey":"Key11",
             "score":0.0
           }
         ]
