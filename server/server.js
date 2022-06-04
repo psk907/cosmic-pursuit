@@ -48,6 +48,10 @@ module.exports = function (db) {
     require("./api/clues/submitRiddleAnswer")(req, res, db);
   });
 
+  app.get("/getGameState", (req, res) => {
+    require("./api/getGameState")(req, res, db);
+  });
+
   app.listen(PORT, () => {
     console.log(`STARDUST Game Server listening on port ${PORT}`);
   });
