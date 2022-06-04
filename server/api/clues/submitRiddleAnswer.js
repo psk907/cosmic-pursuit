@@ -52,6 +52,7 @@ module.exports = async function submitAnswer(req, res, db) {
         unlockedRiddle.crackedRiddle = true;
         unlockedRiddle.crackedRiddleTimeStamp = new Date();
         unlockedRiddle.score+=level.riddlePoints;
+        team.score+=level.riddlePoints;
         let followclueId = riddle.followclueId;
         if(followclueId!==""){
             team.unlockedClues.push({
@@ -73,4 +74,5 @@ module.exports = async function submitAnswer(req, res, db) {
     else{
         res.status(403).send("Wrong Answer.");
     }
+
 };
