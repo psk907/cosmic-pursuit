@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import {
-  Flex,
-  IconButton,
-  Image,
-  Center,
-  Button
+    Flex,
+    IconButton,
+    Image,
+    Center,
+    Button
 } from "@chakra-ui/react";
 import HelpIcon from "../assets/help_icon.svg";
 import MapIcon from "../assets/map_icon.svg";
@@ -14,77 +14,79 @@ import CloseIcon from "../assets/close_icon.svg";
 
 import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
+import { ClueModal } from './Modal'
 
-Modal.setAppElement("#root");
 
-export const Navbar = (props) => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+class Navbar extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            show: false
+        }
+        this.showModal = this.showModal.bind(this)
+        this.hideModal = this.hideModal.bind(this)
+    }
 
-  return (
-    <Flex w="100%" pos="fixed" zIndex="100" px="2">
+    showModal = () => {
+        this.setState({ show: true })
+    }
 
-    <Button colorScheme={'yellow'} variant='solid' mt={2} mx={2}>
-    {props.name}
-  </Button>
-      <Flex
-        position="relative"
-        pr={3}
-        mt={2}
-        align="center"
-        // bgColor={["none","none","blue.50"]}
-        w="100%"
-        justify="flex-end"
-      >
-        <Flex position="relative" pr={3} justify="flex-end">
-          <IconButton
-            colorScheme="whiteAlpha"
-            isRound="true"
-            onClick={() => setModalIsOpen(true)}
-          >
-            <Image height="5vh" src={HelpIcon}></Image>
-          </IconButton>
-        </Flex>
+    hideModal = () => {
+        this.setState({ show: false })
+    }
 
-        <Flex position="relative" pr={3} justify="flex-end">
-          <IconButton
-            colorScheme="whiteAlpha"
-            isRound="true"
-            onClick={() => setModalIsOpen(true)}
-          >
-            <Image height="5vh" src={MapIcon}></Image>
-          </IconButton>
-        </Flex>
+    render() {
+        return (
+            <Flex w="100%" pos="fixed" zIndex="100" px="2">
 
-        <Flex position="relative" justify="flex-end">
-          <IconButton
-            colorScheme="whiteAlpha"
-            isRound="true"
-            onClick={() => setModalIsOpen(true)}
-          >
-            <Image height="5vh" src={LeaderBoardIcon}></Image>
-          </IconButton>
-        </Flex>
-
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={() => setModalIsOpen(false)}
-          className="ReactModal__Overlay"
-        >
-          <Center>
-            <MainPanel>
-              <MainPanelChild>
-                <IconButton
-                  colorScheme="BlackAlpha"
-                  isRound="true"
-                  onClick={() => setModalIsOpen(false)}
+                <Button colorScheme={'yellow'} variant='solid' mt={2} mx={2}>
+                    {this.props.name}
+                </Button>
+                <Flex
+                    position="relative"
+                    pr={3}
+                    mt={2}
+                    align="center"
+                    // bgColor={["none","none","blue.50"]}
+                    w="100%"
+                    justify="flex-end"
                 >
-                  <Image height="5vh" src={CloseIcon}></Image>
-                </IconButton>
-              </MainPanelChild>
-            </MainPanel>
-          </Center>
-        </Modal>
-      </Flex>
-    </Flex>
-  );
-};
+                    <Flex position="relative" pr={3} justify="flex-end">
+                        <IconButton
+                            colorScheme="whiteAlpha"
+                            isRound="true"
+                            onClick={this.showModal}
+                        >
+                            <Image height="5vh" src={HelpIcon}></Image>
+                        </IconButton>
+                    </Flex>
+
+                    <Flex position="relative" pr={3} justify="flex-end">
+                        <IconButton
+                            colorScheme="whiteAlpha"
+                            isRound="true"
+                            onClick={this.showModal}
+                        >
+                            <Image height="5vh" src={MapIcon}></Image>
+                        </IconButton>
+                    </Flex>
+
+                    <Flex position="relative" justify="flex-end">
+                        <IconButton
+                            colorScheme="whiteAlpha"
+                            isRound="true"
+                            onClick={this.showModal}
+                        >
+                            <Image height="5vh" src={LeaderBoardIcon}></Image>
+                        </IconButton>
+                    </Flex>
+
+                    <ClueModal show={this.state.show} handleClose={this.hideModal}></ClueModal>
+                </Flex>
+            </Flex>
+        )
+
+    }
+}
+
+export default Navbar;
