@@ -1,0 +1,9 @@
+.ReactModal__Overlay {
+    height: 80vh;
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 20vh;
+    bottom: 0;
+}

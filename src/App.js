@@ -1,11 +1,12 @@
 import "./App.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import LoginPage from "./pages/loginPage";
+import { Navbar } from "./components/Navbar";
 
 const App = () => {
   return (
     <ChakraProvider>
-      <LoginPage></LoginPage>
+      <Navbar name="Admin101"></Navbar>
     </ChakraProvider>
   );
 };
