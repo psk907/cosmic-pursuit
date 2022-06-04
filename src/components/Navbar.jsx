@@ -1,17 +1,11 @@
+import { Center, Flex, IconButton, Image } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Modal from "react-modal";
-import {
-  Flex,
-  IconButton,
-  Image,
-  Center,
-  Button
-} from "@chakra-ui/react";
-import HelpIcon from "../assets/help_icon.svg";
-import MapIcon from "../assets/map_icon.svg";
-import LeaderBoardIcon from "../assets/leaderboard_icon.svg";
 import CloseIcon from "../assets/close_icon.svg";
-
+import EventTitle from "../assets/cosmic_pursuit.png";
+import HelpIcon from "../assets/help_icon.svg";
+import LeaderBoardIcon from "../assets/leaderboard_icon.svg";
+import MapIcon from "../assets/map_icon.svg";
 import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
 
@@ -22,10 +16,16 @@ export const Navbar = (props) => {
 
   return (
     <Flex w="100%" pos="fixed" zIndex="100" px="2">
-
-    <Button colorScheme={'yellow'} variant='solid' mt={2} mx={2}>
-    {props.name}
-  </Button>
+      <Image
+        src={EventTitle}
+        pl="3"
+        pt="1"
+        height="4vh"
+        alignSelf="center"
+      ></Image>
+      {/* <Button colorScheme={'yellow'} variant='solid' mt={2} mx={2}>
+      {props.name}
+      </Button> */}
       <Flex
         position="relative"
         pr={3}
