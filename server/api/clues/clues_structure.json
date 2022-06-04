@@ -1,42 +1,49 @@
-{
-  "cid11": {
+[
+   {
+    "clueid": "cid11",
     "level": 1,
     "title": "Some title",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
-  "cid21": {
+  {
+    "clueid": "cid21",
     "level": 2,
     "title": "Some other title",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
-  "cid22": {
+   {
+    "clueid": "cid22",
     "level": 2,
     "title": "Some other title again",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
-  "cid23": {
+  {
+    "clueid": "cid23",
     "level": 2,
     "title": "Some other title again again",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
-  "cid31": {
+  {
+    "clueid": "cid31",
     "level": 3,
     "title": "Some one more title",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
-  "cid32": {
+  {
+    "clueid": "cid32",
     "level": 3,
     "title": "Some one more title again",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
-  "cid41": {
+  {
+    "clueid": "cid41",
     "level": 4,
     "title": "Again a title",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   }
-}
+]
