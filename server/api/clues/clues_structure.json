@@ -1,47 +1,47 @@
 [
    {
-    "clueid": "cid11",
+    "clueId": "cid11",
     "level": 1,
     "title": "Some title",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
   {
-    "clueid": "cid21",
+    "clueId": "cid21",
     "level": 2,
     "title": "Some other title",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
    {
-    "clueid": "cid22",
+    "clueId": "cid22",
     "level": 2,
     "title": "Some other title again",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
   {
-    "clueid": "cid23",
+    "clueId": "cid23",
     "level": 2,
     "title": "Some other title again again",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
   {
-    "clueid": "cid31",
+    "clueId": "cid31",
     "level": 3,
     "title": "Some one more title",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
   {
-    "clueid": "cid32",
+    "clueId": "cid32",
     "level": 3,
     "title": "Some one more title again",
     "clue": "Four sentence \n long \n clue \n that points to a location"
   },
 
   {
-    "clueid": "cid41",
+    "clueId": "cid41",
     "level": 4,
     "title": "Again a title",
     "clue": "Four sentence \n long \n clue \n that points to a location"

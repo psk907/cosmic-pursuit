@@ -4,22 +4,22 @@
     "clues": ["cid11"],
     "locationPoints": 5,
     "riddlePoints": 12,
-    "keys": ["Key11", "Key12", "Key13"],
+    "scanKeys": ["Key11", "Key12", "Key13"],
     "riddles": [
       {
-        "key": "Key11",
+        "scanKey": "Key11",
         "answer": "Answer11",
-        "followClueId": "cid21"
+        "followclueId": "cid21"
       },
       {
-        "key": "Key12",
+        "scanKey": "Key12",
         "answer": "Answer12",
-        "followClueId": "cid22"
+        "followclueId": "cid22"
       },
       {
-        "key": "Key13",
+        "scanKey": "Key13",
         "answer": "Answer13",
-        "followClueId": "cid23"
+        "followclueId": "cid23"
       }
     ]
   },
@@ -28,17 +28,17 @@
     "clues": ["cid21", "cid22", "cid23"],
     "locationPoints": 25,
     "riddlePoints": 50,
-    "keys": ["Key21", "Key22"],
+    "scanKeys": ["Key21", "Key22"],
     "riddles": [
       {
-        "key": "Key21",
+        "scanKey": "Key21",
         "answer": "Answer21",
-        "followClueId": "cid31"
+        "followclueId": "cid31"
       },
       {
-        "key": "Key22",
+        "scanKey": "Key22",
         "answer": "Answer22",
-        "followClueId": "cid32"
+        "followclueId": "cid32"
       }
     ]
   },
@@ -47,12 +47,12 @@
     "clues": ["cid31"],
     "locationPoints": 25,
     "riddlePoints": 50,
-    "keys": ["Key31"],
+    "scanKeys": ["Key31"],
     "riddles": [
       {
-        "key": "Key31",
+        "scanKey": "Key31",
         "answer": "Answer31",
-        "followClueId": "cid41"
+        "followclueId": "cid41"
       }
     ]
   },
@@ -61,12 +61,12 @@
     "clues": ["cid41"],
     "locationPoints": 25,
     "riddlePoints": 50,
-    "keys": ["Key41"],
+    "scanKeys": ["Key41"],
     "riddles": [
       {
-        "key": "Key41",
+        "scanKey": "Key41",
         "answer": "Answer41",
-        "followClueId": ""
+        "followclueId": ""
       }
     ]
   }

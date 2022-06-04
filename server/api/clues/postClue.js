@@ -4,13 +4,10 @@ module.exports = async function (req, res, db) {
 
         /** POST
          *  Required params
-         *  title: The title of the clue.
-         *  clueid: The id of the clue.
-         *  solution: The solution of the clue (Might be a QR Code string).
+         *  clueId: The id of the clue.
          *  body : The html body of the clue. 
-         *  imgurls : An array of urls to images.
          */
-        let params = ["title","clueid", "solution", "body", "imgurls"];
+        let params = ["title","clueId", "solution", "body", "imgurls"];
         console.log(req.body)
         for(let param of params){
             if(!req.body[param]){
@@ -20,12 +17,12 @@ module.exports = async function (req, res, db) {
         }
         let clue = {
             title: req.body.title,
-            clueid: req.body.clueid,
+            clueId: req.body.clueId,
             solution: req.body.solution,
             body: req.body.body,
             imgurls: req.body.imgurls
         }
-        let result = await db.collection("clues").updateOne({clueid: req.body.clueid}, {$set: clue}, {upsert: true});
+        let result = await db.collection("clues").updateOne({clueId: req.body.clueId}, {$set: clue}, {upsert: true});
         res.status(200).send("Successfully updated/added clue.");
     }
     catch(err){
