@@ -29,7 +29,7 @@ module.exports = async function register(req, res, db) {
       score: 0.0,
       unlockedClues: [
         {
-          cid: "cid11",
+          clueId: "cid11",
           isUnlocked: true,
           crackedClue: false,
           crackedRiddle: false,

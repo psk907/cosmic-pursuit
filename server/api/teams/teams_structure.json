@@ -1,0 +1,20 @@
+[
+    {
+        "teamName": "mystic roamers",
+        "teamNo": 1234,
+        "password": "password",
+        "uid": "t124",
+        "score": 0.0,
+        "unlockedClues": [
+          {
+            "clueId": "cid11",
+            "isUnlocked": true,
+            "crackedClue": false,
+            "crackedRiddle": false,
+            "crackedClueTimeStamp":"",
+            "crackedRiddleTimeStamp":"",
+            "score":0.0
+          }
+        ]
+      }
+]

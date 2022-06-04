@@ -1,0 +1,37 @@
+{
+  "restoreTerminals.runOnStartup": false,
+    "restoreTerminals.terminals": [
+        {
+          "splitTerminals": [
+            {
+              "name": "server",
+              "commands": [
+                "cd server",
+                "nodemon index.js"
+              ]
+            },
+            {
+              "name": "packages",
+              "commands": [
+                "cd server",
+              ]
+            }
+          ]
+        },
+        {
+          "splitTerminals": [
+            {
+              "name": "website",
+              "commands": [
+                "npm start"
+              ]
+            },
+            {
+                "name": "packages",
+                "commands": [
+                ]
+            }
+          ]
+        }
+      ]
+}
