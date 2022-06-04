@@ -7,6 +7,7 @@ async function unlockRiddle(team,locationPoints,clueId,scanKey,db,res){
             unlockedClue.crackedClueTimestamp = new Date();
             unlockedClue.scanKey = scanKey;
             unlockedClue.score+=locationPoints;
+            team.score+=locationPoints;
             await db.collection("teams").updateOne({uid: team.uid}, {$set: team});
             res.status(200).send("Riddle unlocked successfully");
         }
@@ -83,6 +84,5 @@ module.exports = async function validateQRKey(req, res, db) {
         }
        
         await checkIfClueBelongsToLevel(req,res,db);
-            
-        // let riddle = level.riddles.find(riddle => riddle.scanKey == scanKey);
+        
 }
