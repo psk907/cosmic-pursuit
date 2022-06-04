@@ -5,8 +5,6 @@ import {
   IconButton,
   Image,
   Center,
-  Text,
-  propNames,
   Button
 } from "@chakra-ui/react";
 import HelpIcon from "../assets/help_icon.svg";
@@ -76,7 +74,7 @@ export const Navbar = (props) => {
             <MainPanel>
               <MainPanelChild>
                 <IconButton
-                  colorScheme="whiteAlpha"
+                  colorScheme="BlackAlpha"
                   isRound="true"
                   onClick={() => setModalIsOpen(false)}
                 >
