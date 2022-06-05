@@ -30,12 +30,12 @@ module.exports = async function register(req, res, db) {
       unlockedClues: [
         {
           clueId: "cid11",
-          level:1,
+          level: 1,
           isUnlocked: true,
           crackedClue: false,
           crackedRiddle: false,
-          score:0.0
-        }
+          score: 0.0,
+        },
       ],
     };
 

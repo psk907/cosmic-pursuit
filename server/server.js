@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 var bodyParser = require("body-parser");
 const PORT = process.env.PORT || 5000;
 
@@ -7,6 +8,9 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+//Allow requests from all origins
+app.use(cors());
+// A random key for signing the cookie
 
 module.exports = function (db) {
   app.get("/", (req, res) => {
@@ -46,6 +50,10 @@ module.exports = function (db) {
   });
   app.post("/clues/submitRiddleAnswer", (req, res) => {
     require("./api/clues/submitRiddleAnswer")(req, res, db);
+  });
+
+  app.get("/getGameState", (req, res) => {
+    require("./api/getGameState")(req, res, db);
   });
 
   app.listen(PORT, () => {
