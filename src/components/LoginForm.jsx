@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LoginArea = () => {
   return (
@@ -45,6 +46,8 @@ const LoginForm = () => {
     if (cookies["uid"]) {
       console.log("Already logged in!");
       //  TODO: Navigate to Game Screen
+      <Link to="/play">Play</Link>
+
     }
   }, []);
 
@@ -64,6 +67,8 @@ const LoginForm = () => {
             path: "/",
           });
           //  TODO: Navigate to Game Screen
+          <Link to="/play">Play</Link>
+
         }
       })
       .catch(function (error) {
@@ -87,13 +92,17 @@ const LoginForm = () => {
   function handleContinue(event) {
     event.preventDefault();
     //  TODO: Navigate to Game Screen
+    <Link to="/play">Play</Link>
+
   }
 
   return (
     <Box my={8} textAlign="left">
       {cookies["uid"] ? (
         <VStack>
+        <Link to="/play">
           <Button>Continue</Button>
+          </Link>
           <Button colorScheme="red" variant="outline" onClick={handleLogout}>
             Logout
           </Button>
@@ -106,7 +115,7 @@ const LoginForm = () => {
             isRequired
           >
             <FormLabel color={"white"}>Team ID</FormLabel>
-            <Input type="number" placeholder="Enter your Team ID" />
+            <Input type="number" placeholder="Enter your Team ID" color={"white"}/>
           </FormControl>
 
           <FormControl
@@ -116,7 +125,7 @@ const LoginForm = () => {
             isRequired
           >
             <FormLabel color={"white"}>Password</FormLabel>
-            <Input type="password" placeholder="Enter your password" />
+            <Input type="password" placeholder="Enter your password" color={"white"}/>
           </FormControl>
 
           <Button

@@ -1,12 +1,14 @@
-import { Button, Flex, IconButton, Image } from "@chakra-ui/react";
+import { Button, Text, Flex, IconButton, Image } from "@chakra-ui/react";
 import { useState } from "react";
 import HelpIcon from "../assets/help_icon.svg";
 import LeaderBoardIcon from "../assets/leaderboard_icon.svg";
 import MapIcon from "../assets/map_icon.svg";
 import { ClueModal } from "./Modal";
 import eventLogo from "../assets/cosmic_pursuit.png";
+import { useCookies } from "react-cookie";
 
 export const Navbar = () => {
+    const [cookies, setCookie, removeCookie] = useCookies(["uid"]);
   const [show, setshow] = useState(false);
   const showModal = (event) => {
     setshow(true);
@@ -15,7 +17,6 @@ export const Navbar = () => {
   const hideModal = (event) => {
     setshow(false);
   };
-
   return (
     <Flex w="100%" pos="fixed" zIndex="100" px="2">
       <Image
@@ -36,6 +37,7 @@ export const Navbar = () => {
       >
         <Flex position="relative" pr={3} justify="flex-end">
           <IconButton
+            isDisabled= {cookies["uid"]? false: true}
             colorScheme="whiteAlpha"
             isRound="true"
             onClick={showModal}
@@ -46,6 +48,7 @@ export const Navbar = () => {
 
         <Flex position="relative" pr={3} justify="flex-end">
           <IconButton
+          isDisabled= {cookies["uid"]? false: true}
             colorScheme="whiteAlpha"
             isRound="true"
             onClick={showModal}
@@ -56,6 +59,7 @@ export const Navbar = () => {
 
         <Flex position="relative" justify="flex-end">
           <IconButton
+          isDisabled= {cookies["uid"]? false: true}
             colorScheme="whiteAlpha"
             isRound="true"
             onClick={showModal}

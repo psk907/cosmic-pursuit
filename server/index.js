@@ -9,6 +9,3 @@ mongoClient.connect(require("./connectionurl"), function (err, client) {
   require("./server")(db);
   
 });
-
-
-
