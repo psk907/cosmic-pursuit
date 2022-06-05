@@ -1,24 +1,35 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  VStack,
-} from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+import Background1 from "../assets/Background1.jpg";
 import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
-import Background1 from "../assets/Background1.jpg";
-import { Navigate } from 'react-router'
-
+import { Navigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 export const GameArea = () => {
-  
-  
+  const [gameState, setgameState] = useState({});
+  const [cookies] = useCookies(["uid"]);
 
+  const serverUrl = process.env.SERVER_URL || "http://localhost:5000";
+
+  useEffect(() => {
+    let uid = cookies["uid"];
+    // if(!uid)
+    axios
+      .get(`${serverUrl}/getGameState`, {
+        headers: {
+          uid: uid,
+        },
+      })
+      .then((response) => {
+        console.log(response.status);
+        if (response.status === 200) {
+          setgameState(response.data);
+        }
+      });
+  }, []);
   console.log("Here");
+  // if (!cookies["uid"]) return <Navigate to="/" />;
   return (
     <div
       style={{
@@ -33,7 +44,9 @@ export const GameArea = () => {
       }}
     >
       <MainPanel>
-        <MainPanelChild></MainPanelChild>
+        <MainPanelChild>
+          {gameState === {} ? <Spinner></Spinner> : <p>{gameState.teamName}</p>}
+        </MainPanelChild>
       </MainPanel>
     </div>
   );

@@ -9,17 +9,17 @@ import { Navigate } from "react-router";
 import { useCookies } from "react-cookie";
 
 const App = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["uid"]);
+  const [cookies] = useCookies(["uid"]);
   return (
     <ChakraProvider>
       <Router>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<LoginPage />} />
+          <Route exact path="/login" element={<LoginPage />} />
           <Route
             exact
-            path="/play"
-            element={cookies["uid"] ? <GameArea /> : <LoginPage />}
+            path="/"
+            element={!cookies["uid"] ? <LoginPage /> : <GameArea />}
           />
         </Routes>
         <Footer />
