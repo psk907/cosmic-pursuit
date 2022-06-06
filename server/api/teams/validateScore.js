@@ -1,10 +1,11 @@
 module.exports = async function (uid, db) {
-  if (!uid || db || uid.length == 0) {
+  if (!uid || !db || uid.length == 0) {
     return;
   }
   let finalScore = 0;
   let team = await db.collection("teams").findOne({ uid: uid });
   if (team == null) {
+    console.log("team not found")
     return 0;
   }
   let unlockedClues = team.unlockedClues;

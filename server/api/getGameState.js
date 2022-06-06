@@ -13,7 +13,7 @@ module.exports = async function getGameState(req, res, db) {
       return res.status(401).json({
         message: `Unauthorized ! Please login and try again.`,
       });
-
+    await require("./teams/validateScore")(uid, db);
     let teamData = await db.collection("teams").findOne({ uid: uid });
     let clues = await db.collection("clues").find().toArray();
 
