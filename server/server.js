@@ -56,6 +56,10 @@ module.exports = function (db) {
     require("./api/getGameState")(req, res, db);
   });
 
+  app.get("/getLeaderboard", (req, res) => {
+    require("./api/leaderboard/getLeaderboard")(req, res, db);
+  });
+
   app.listen(PORT, () => {
     console.log(`STARDUST Game Server listening on port ${PORT}`);
   });
