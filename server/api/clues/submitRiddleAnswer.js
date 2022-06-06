@@ -53,6 +53,7 @@ module.exports = async function submitAnswer(req, res, db) {
         unlockedRiddle.crackedRiddleTimeStamp = new Date();
         unlockedRiddle.score+=level.riddlePoints;
         team.score+=level.riddlePoints;
+        team.lastSubmissionTimeStamp = new Date();
         let followclueId = riddle.followclueId;
         if(followclueId!==""){
             team.unlockedClues.push({
