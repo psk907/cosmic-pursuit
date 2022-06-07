@@ -1,51 +1,23 @@
 {
-  "name": "startdust-treasurehunt",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@chakra-ui/icons": "^2.0.1",
-    "@chakra-ui/react": "^2.1.2",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.27.2",
-    "cleanup-react-app": "^1.1.3",
-    "cors": "^2.8.5",
-    "framer-motion": "^6.3.6",
-    "react": "^18.1.0",
-    "react-cookie": "^4.1.1",
-    "react-dom": "^18.1.0",
-    "react-map-interaction": "^2.1.0",
-    "react-modal": "^3.15.1",
-    "react-router-dom": "^6.3.0",
-    "react-router-hash-link": "^2.4.3",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4"
-  },
+  "name": "treasure-hunt-server",
+  "version": "1.0.0",
+  "description": "Backend Server for STARDUST Treasure Hunt",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "firebase": "^9.8.2",
+    "mongodb": "^4.6.0",
+    "uuid": "^8.3.2"
   }
 }
