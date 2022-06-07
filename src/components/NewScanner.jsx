@@ -52,6 +52,9 @@ export const NewScanner = ({ show, handleClose, callback }) => {
             }}
           >
             <QrReader
+              constraints={{
+                facingMode: "environment",
+              }}
               onResult={(result, error) => {
                 if (!!result) {
                   console.log(result);
