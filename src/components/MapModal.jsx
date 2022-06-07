@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { Flex, IconButton, Image, Center, Button } from "@chakra-ui/react";
+import {
+  Flex,
+  IconButton,
+  Image,
+  Center,
+  Button,
+  VStack,
+  Box,
+} from "@chakra-ui/react";
 import CloseIcon from "../assets/close_icon.svg";
-
+import Map from "../assets/map.jpg";
 import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
+import { MapInteractionCSS } from "react-map-interaction";
 
 Modal.setAppElement("#root");
 
@@ -20,13 +29,23 @@ export const MapModal = ({ handleClose, show, children }) => {
       <Center>
         <MainPanel>
           <MainPanelChild>
-            <IconButton
-              colorScheme="BlackAlpha"
-              isRound="true"
-              onClick={handleClose}
-            >
-              <Image height="5vh" src={CloseIcon}></Image>
-            </IconButton>
+            <VStack>
+              <Flex mb={2}>
+                <IconButton
+                  colorScheme="BlackAlpha"
+                  isRound="true"
+                  onClick={handleClose}
+                >
+                  <Image height="5vh" src={CloseIcon}></Image>
+                </IconButton>
+              </Flex>
+
+              <Box h="full">
+                <MapInteractionCSS>
+                  <Image src={Map} />
+                </MapInteractionCSS>
+              </Box>
+            </VStack>
           </MainPanelChild>
         </MainPanel>
       </Center>
