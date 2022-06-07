@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Footer } from "./components/Footer";
@@ -10,8 +10,27 @@ import { useCookies } from "react-cookie";
 
 const App = () => {
   const [cookies] = useCookies(["uid"]);
+
+  // Version 1: Using objects
+  const theme = extendTheme({
+    styles: {
+      global: {
+        // styles for the `body`
+        body: {
+          color: "white",
+        },
+        // styles for the `a`
+        a: {
+          color: "gray.200",
+          // _hover: {
+          //   textDecoration: "underline",
+          // },
+        },
+      },
+    },
+  });
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Router>
         <Navbar />
         <Routes>

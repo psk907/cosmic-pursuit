@@ -8,8 +8,10 @@ export default function MainPanelChild({ children }) {
       style={{
         marginRight: "20%",
         marginLeft: "20%",
-        marginTop: "10%",
-        marginBottom: "10%",
+        paddingTop: "10%",
+        // paddingBottom: "10%",
+        display: "flex",
+        height: "85%",
       }}
     >
       {children}
