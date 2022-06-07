@@ -40,7 +40,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const axios = require("axios").default;
-  const serverUrl = "http://sd-treasure-hunt.azurewebsites.net";
+  const serverUrl = "https://sd-treasure-hunt.azurewebsites.net";
   const [isLoading, setLoading] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["uid"]);
 
