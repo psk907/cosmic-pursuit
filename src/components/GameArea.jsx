@@ -16,6 +16,7 @@ import MainPanelChild from "./MainPanelChild";
 import BottomPanel from "../assets/Bottom_Widget.svg";
 import { QRScanner } from "./QRScanner";
 import { NewScanner } from "./NewScanner";
+
 export const GameArea = () => {
   const [gameState, setgameState] = useState({});
   const [showScanner, setshowScanner] = useState(false);

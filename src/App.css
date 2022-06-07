@@ -1,12 +1,14 @@
 .ReactModal__Overlay {
-    height: 80vh;
     z-index: 99;
     position: absolute;
+    padding-top: 28vh;
     left: 0;
     right: 0;
-    top: 12vh;
+    top: 0;
     bottom: 0;
     opacity: 1;
+    /* background-image: url(./assets/stars_background2.gif); */
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .ReactModal__Content {
