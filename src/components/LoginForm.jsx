@@ -17,8 +17,10 @@ export const LoginArea = () => {
   return (
     <MainPanel>
       <MainPanelChild>
-        <LoginHeader />
-        <LoginForm />
+        <VStack height="100%" justify="center">
+          <LoginHeader />
+          <LoginForm />
+        </VStack>
       </MainPanelChild>
     </MainPanel>
   );
@@ -134,6 +136,8 @@ const LoginForm = () => {
             mt={4}
             onClick={handleLogin}
             isLoading={isLoading}
+            variant="solid"
+            background="blue.600"
           >
             Sign In
           </Button>
