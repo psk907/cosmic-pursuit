@@ -45,6 +45,9 @@ module.exports = function (db) {
   app.post("/clues/postClue", (req, res) => {
     require("./api/clues/postClue")(req, res, db);
   });
+  app.post("/levels/postLevel", (req, res) => {
+    require("./api/levels/postLevels")(req, res, db);
+  });
   app.post("/clues/validateQRKey", (req, res) => {
     require("./api/clues/validateQRKey")(req, res, db);
   });

@@ -6,7 +6,14 @@ module.exports = async function (req, res, db) {
      *  clueId: The id of the clue.
      *  body : The html body of the clue.
      */
-    let params = ["title", "clueId", "body", "level"];
+    let params = [
+      "level",
+      "clues",
+      "locationPoints",
+      "riddlePoints",
+      "scanKeys",
+      "riddles",
+    ];
     console.log(req.body);
     for (let param of params) {
       if (!req.body[param]) {
@@ -14,14 +21,16 @@ module.exports = async function (req, res, db) {
         return;
       }
     }
-    let clue = {
-      title: req.body.title,
-      clueId: req.body.clueId,
-      body: req.body.body,
+    let level = {
       level: req.body.level,
+      clues: req.body.clues,
+      locationPoints: req.body.locationPoints,
+      riddlePoints: req.body.riddlePoints,
+      scanKeys: req.body.scanKeys,
+      riddles: req.body.riddles,
     };
-    let result = await db.collection("clues").insertOne(clue);
-    res.status(200).send("Successfully updated/added clue.");
+    let result = await db.collection("levels").insertOne(level);
+    res.status(200).send("Successfully updated/added level.");
   } catch (err) {
     console.log(err);
     res.status(500).send(err);

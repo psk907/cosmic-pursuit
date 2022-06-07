@@ -1,5 +1,5 @@
 [
-   {
+  {
     "clueId": "cid11",
     "level": 1,
     "title": "Some title",
@@ -13,7 +13,7 @@
     "body": "Four sentence \n long \n clue \n that points to a location"
   },
 
-   {
+  {
     "clueId": "cid22",
     "level": 2,
     "title": "Some other title again",
