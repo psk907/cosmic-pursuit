@@ -2,6 +2,7 @@
 .env
 
 connectionurl.js
+server
 
 # dependencies
 /node_modules
