@@ -25,7 +25,7 @@ export const GameArea = () => {
   const [cookies] = useCookies(["uid"]);
   const [refreshCount, setrefreshCount] = useState(0);
   const [clueIndex, setclueIndex] = useState(0);
-  const serverUrl = process.env.SERVER_URL || "http://localhost:5000";
+  const serverUrl = "http://sd-treasure-hunt.azurewebsites.net";
 
   useEffect(() => {
     let uid = cookies["uid"];
