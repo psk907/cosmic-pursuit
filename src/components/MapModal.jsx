@@ -1,19 +1,10 @@
-import React, { useState } from "react";
+import { Box, Center, IconButton, Image, VStack } from "@chakra-ui/react";
+import React from "react";
+import { MapInteractionCSS } from "react-map-interaction";
 import Modal from "react-modal";
-import {
-  Flex,
-  IconButton,
-  Image,
-  Center,
-  Button,
-  VStack,
-  Box,
-} from "@chakra-ui/react";
 import CloseIcon from "../assets/close_icon.svg";
 import Map from "../assets/map.jpg";
-import MainPanel from "./MainPanel";
-import MainPanelChild from "./MainPanelChild";
-import { MapInteractionCSS } from "react-map-interaction";
+import Frame from "../assets/Popup_Frame.svg";
 
 Modal.setAppElement("#root");
 
@@ -27,28 +18,55 @@ export const MapModal = ({ handleClose, show, children }) => {
       overlayClassName="ReactModal__Overlay"
     >
       <Center>
-        <MainPanel>
-          <MainPanelChild>
-            <VStack>
-              <Flex mb={2}>
-                <IconButton
-                  colorScheme="BlackAlpha"
-                  isRound="true"
-                  onClick={handleClose}
-                >
-                  <Image height="5vh" src={CloseIcon}></Image>
-                </IconButton>
-              </Flex>
-
+        <div
+          style={{
+            height: "80vh",
+            position: "absolute",
+            top: "-15%",
+            maxWidth: "600px",
+            aspectRatio: 0.5344,
+            backgroundSize: "contain",
+            backgroundClip: "border-box",
+            backgroundImage: `url(${Frame})`,
+            backgroundRepeat: "no-repeat",
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box
+            style={{
+              marginRight: "2%",
+              marginLeft: "2%",
+              paddingTop: "10%",
+              paddingBottom: "10%",
+              display: "flex",
+              // height: "85%",
+            }}
+          >
+            <VStack justify="center">
               <Box h="full">
                 <MapInteractionCSS>
                   <Image src={Map} />
                 </MapInteractionCSS>
               </Box>
             </VStack>
-          </MainPanelChild>
-        </MainPanel>
+            <IconButton
+              colorScheme="BlackAlpha"
+              isRound="true"
+              onClick={handleClose}
+              position="relative"
+              top="-45"
+              right="-15"
+            >
+              <Image height="5vh" src={CloseIcon}></Image>
+            </IconButton>
+          </Box>
+        </div>
       </Center>
     </Modal>
   );
 };
+
+// src\assets\Popup_Frame.svg

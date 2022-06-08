@@ -1,20 +1,19 @@
-import { Button, Text, Flex, IconButton, Image } from "@chakra-ui/react";
+import { Flex, IconButton, Image } from "@chakra-ui/react";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
+import eventLogo from "../assets/cosmic_pursuit.png";
 import HelpIcon from "../assets/help_icon.svg";
 import LeaderBoardIcon from "../assets/leaderboard_icon.svg";
 import MapIcon from "../assets/map_icon.svg";
-import { ClueModal } from "./ClueModal";
+import { InfoModal } from "./ClueModal";
 import { LeaderModal } from "./LeaderBoardModal";
 import { MapModal } from "./MapModal";
-import eventLogo from "../assets/cosmic_pursuit.png";
-import { useCookies } from "react-cookie";
 
 export const Navbar = () => {
-    const [cookies, setCookie, removeCookie] = useCookies(["uid"]);
+  const [cookies, setCookie, removeCookie] = useCookies(["uid"]);
   const [showClue, setshowClue] = useState(false);
   const [showLeader, setshowLeader] = useState(false);
   const [showMap, setshowMap] = useState(false);
-
 
   const showClueModal = (event) => {
     setshowClue(true);
@@ -23,17 +22,15 @@ export const Navbar = () => {
   const showMapModal = (event) => {
     setshowMap(true);
   };
-  
+
   const showLeaderModal = (event) => {
     setshowLeader(true);
   };
-
 
   const hideModal = (event) => {
     setshowClue(false);
     setshowMap(false);
     setshowLeader(false);
-
   };
   return (
     <Flex w="100%" pos="fixed" zIndex="100" px="2">
@@ -55,7 +52,7 @@ export const Navbar = () => {
       >
         <Flex position="relative" pr={3} justify="flex-end">
           <IconButton
-            isDisabled= {cookies["uid"]? false: true}
+            isDisabled={cookies["uid"] ? false : true}
             colorScheme="whiteAlpha"
             isRound="true"
             onClick={showClueModal}
@@ -66,7 +63,7 @@ export const Navbar = () => {
 
         <Flex position="relative" pr={3} justify="flex-end">
           <IconButton
-          isDisabled= {cookies["uid"]? false: true}
+            isDisabled={cookies["uid"] ? false : true}
             colorScheme="whiteAlpha"
             isRound="true"
             onClick={showMapModal}
@@ -77,7 +74,7 @@ export const Navbar = () => {
 
         <Flex position="relative" justify="flex-end">
           <IconButton
-          isDisabled= {cookies["uid"]? false: true}
+            isDisabled={cookies["uid"] ? false : true}
             colorScheme="whiteAlpha"
             isRound="true"
             onClick={showLeaderModal}
@@ -86,10 +83,9 @@ export const Navbar = () => {
           </IconButton>
         </Flex>
 
-        <ClueModal show={showClue} handleClose={hideModal}></ClueModal>
+        <InfoModal show={showClue} handleClose={hideModal}></InfoModal>
         <MapModal show={showMap} handleClose={hideModal}></MapModal>
         <LeaderModal show={showLeader} handleClose={hideModal}></LeaderModal>
-
       </Flex>
     </Flex>
   );
