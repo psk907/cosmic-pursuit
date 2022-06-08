@@ -16,6 +16,7 @@ import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
 import { NewScanner } from "./NewScanner";
 import PageBackdrop from "./PageBackdrop";
+import parse from "html-react-parser";
 
 export const GameArea = () => {
   const [gameState, setgameState] = useState({});
@@ -182,7 +183,7 @@ export const GameArea = () => {
   return (
     <PageBackdrop>
       <MainPanel>
-        <MainPanelChild h="100%">
+        <MainPanelChild h="100%" w="100%">
           {loading ? (
             <VStack justify="center">
               <Spinner color="white" marginBottom="2rem"></Spinner>
@@ -191,7 +192,7 @@ export const GameArea = () => {
             </VStack>
           ) : (
             <VStack>
-              <HStack w="100%" justify="space-between">
+              <HStack w="100hw" justify="space-between">
                 <Button variant="outline" onClick={decrementClueIndex}>
                   {" "}
                   {"<"}
@@ -203,8 +204,7 @@ export const GameArea = () => {
                 </Button>
               </HStack>
               <Spacer></Spacer>
-              <h1>{getFocusedClue().body}</h1>
-
+              <div style={{ fontSize: 13 }}>{parse(getFocusedClue().body)}</div>
               <Spacer></Spacer>
               {bottomWidget()}
             </VStack>

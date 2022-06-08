@@ -30,7 +30,7 @@ export const NewScanner = ({ show, handleClose, callback }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            padding: "8.5%",
+            padding: "6%",
           }}
         >
           <Box
@@ -53,6 +53,7 @@ export const NewScanner = ({ show, handleClose, callback }) => {
             <QrReader
               constraints={{
                 facingMode: "environment",
+                aspectRatio: 1,
               }}
               onResult={(result, error) => {
                 if (!!result) {
