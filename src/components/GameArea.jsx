@@ -91,22 +91,23 @@ export const GameArea = () => {
   const answerRiddle = () => {
     var l = gameState["unlockedClues"].length;
     let uid = cookies["uid"];
-
+    if (!riddleAns)
+      alert("Please type the answer to the riddle handed over to you.");
     axios
       .post(`${serverUrl}/clues/submitRiddleAnswer`, {
         clueId: gameState["unlockedClues"][l - 1].clueId,
-        answer: riddleAns,
+        answer: riddleAns.toUpperCase(),
         uid: uid,
       })
       .then((response) => {
         console.log(response.data);
         if (response.status === 200) {
-          alert(response.data);
+          alert(response.data.message);
           setrefreshCount(refreshCount + 1);
         }
       })
       .catch((e) => {
-        alert(e.response.data);
+        alert(e.response.data.message);
       });
   };
 
