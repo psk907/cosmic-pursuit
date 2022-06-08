@@ -12,6 +12,7 @@ import { useCookies } from "react-cookie";
 export const Navbar = () => {
     const [cookies, setCookie, removeCookie] = useCookies(["uid"]);
   const [showClue, setshowClue] = useState(false);
+  const [leaderCallNo, setleaderCallNo] = useState(0);
   const [showLeader, setshowLeader] = useState(false);
   const [showMap, setshowMap] = useState(false);
 
@@ -25,6 +26,7 @@ export const Navbar = () => {
   };
   
   const showLeaderModal = (event) => {
+    setleaderCallNo(leaderCallNo + 1)
     setshowLeader(true);
   };
 
@@ -88,7 +90,7 @@ export const Navbar = () => {
 
         <ClueModal show={showClue} handleClose={hideModal}></ClueModal>
         <MapModal show={showMap} handleClose={hideModal}></MapModal>
-        <LeaderModal show={showLeader} handleClose={hideModal}></LeaderModal>
+        <LeaderModal show={showLeader} iter={leaderCallNo} handleClose={hideModal}></LeaderModal>
 
       </Flex>
     </Flex>
