@@ -1,6 +1,5 @@
-// To use Html5QrcodeScanner (more info below)
 import { Box, Center, IconButton, Image } from "@chakra-ui/react";
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import { QrReader } from "react-qr-reader";
 import CircularWindow from "../assets/Circuar_Window.svg";
@@ -31,7 +30,7 @@ export const NewScanner = ({ show, handleClose, callback }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            padding: "8.5%",
+            padding: "6%",
           }}
         >
           <Box
@@ -54,6 +53,7 @@ export const NewScanner = ({ show, handleClose, callback }) => {
             <QrReader
               constraints={{
                 facingMode: "environment",
+                aspectRatio: 1,
               }}
               onResult={(result, error) => {
                 if (!!result) {
@@ -89,11 +89,5 @@ export const NewScanner = ({ show, handleClose, callback }) => {
         <Image height="5vh" src={CloseIcon}></Image>
       </IconButton>
     </Modal>
-  );
-
-  return (
-    <>
-      <p>{data}</p>
-    </>
   );
 };

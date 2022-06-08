@@ -10,7 +10,9 @@ module.exports = async function submitAnswer(req, res, db) {
   let params = ["clueId", "uid", "answer"];
   for (let param of params) {
     if (!req.body[param]) {
-      res.status(400).send("Missing parameter in request body: " + param);
+      res
+        .status(400)
+        .json({ message: "Missing parameter in request body: " + param });
       return;
     }
   }
@@ -20,7 +22,7 @@ module.exports = async function submitAnswer(req, res, db) {
 
   let team = await db.collection("teams").findOne({ uid: uid });
   if (team == null) {
-    res.status(404).send("Team not found.");
+    res.status(404).json({ message: "Team not found." });
     return;
   }
 
@@ -53,7 +55,7 @@ module.exports = async function submitAnswer(req, res, db) {
   if (!riddle) {
     return res
       .status(404)
-      .send({ message: "Invalid ScanKey , Riddle not found." });
+      .json({ message: "Invalid ScanKey , Riddle not found." });
   }
 
   if (clueObj.crackedClue === true && riddle.answer.trim() === answer) {
@@ -78,11 +80,11 @@ module.exports = async function submitAnswer(req, res, db) {
       });
     } else {
       await db.collection("teams").updateOne({ uid: uid }, { $set: team });
-      res.status(200).send({
+      res.status(200).json({
         message: "Congratulations! You have successfully solved all riddles.",
       });
     }
   } else {
-    res.status(403).send({ message: "Wrong Answer." });
+    res.status(403).json({ message: "Wrong Answer." });
   }
 };

@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  Heading,
   HStack,
   Input,
   Spacer,
@@ -10,12 +11,12 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import Background1 from "../assets/Background1.jpg";
+import BottomPanel from "../assets/Bottom_Widget.svg";
 import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
-import BottomPanel from "../assets/Bottom_Widget.svg";
-import { QRScanner } from "./QRScanner";
 import { NewScanner } from "./NewScanner";
+import PageBackdrop from "./PageBackdrop";
+import parse from "html-react-parser";
 
 export const GameArea = () => {
   const [gameState, setgameState] = useState({});
@@ -26,11 +27,11 @@ export const GameArea = () => {
   const [cookies] = useCookies(["uid"]);
   const [refreshCount, setrefreshCount] = useState(0);
   const [clueIndex, setclueIndex] = useState(0);
-  const serverUrl = "https://sd-treasure-hunt.azurewebsites.net";
+  const serverUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:5000";
 
   useEffect(() => {
     let uid = cookies["uid"];
-    // if(!uid)
+
     axios
       .get(`${serverUrl}/getGameState`, {
         headers: {
@@ -90,17 +91,18 @@ export const GameArea = () => {
   const answerRiddle = () => {
     var l = gameState["unlockedClues"].length;
     let uid = cookies["uid"];
-    // if(!uid)
+    if (!riddleAns)
+      alert("Please type the answer to the riddle handed over to you.");
     axios
       .post(`${serverUrl}/clues/submitRiddleAnswer`, {
         clueId: gameState["unlockedClues"][l - 1].clueId,
-        answer: riddleAns,
+        answer: riddleAns.toUpperCase(),
         uid: uid,
       })
       .then((response) => {
         console.log(response.data);
         if (response.status === 200) {
-          alert(response.data);
+          alert(response.data.message);
           setrefreshCount(refreshCount + 1);
         }
       })
@@ -180,25 +182,18 @@ export const GameArea = () => {
 
   // if (!cookies["uid"]) return <Navigate to="/" />;
   return (
-    <div
-      style={{
-        height: "100vh",
-        alignItems: "center",
-        display: "flex",
-        VStackDirection: "column",
-        justifyContent: "center",
-        background: `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${Background1})`,
-        backgroundSize: "cover",
-        backgroundPositionX: "20%",
-      }}
-    >
+    <PageBackdrop>
       <MainPanel>
-        <MainPanelChild h="100%">
+        <MainPanelChild h="100%" w="100%">
           {loading ? (
-            <Spinner></Spinner>
+            <VStack justify="center">
+              <Spinner color="white" marginBottom="2rem"></Spinner>
+
+              <Heading size="l">Loading...</Heading>
+            </VStack>
           ) : (
             <VStack>
-              <HStack w="100%" justify="space-between">
+              <HStack w="100hw" justify="space-between">
                 <Button variant="outline" onClick={decrementClueIndex}>
                   {" "}
                   {"<"}
@@ -210,8 +205,7 @@ export const GameArea = () => {
                 </Button>
               </HStack>
               <Spacer></Spacer>
-              <h1>{getFocusedClue().body}</h1>
-
+              <div style={{ fontSize: 13 }}>{parse(getFocusedClue().body)}</div>
               <Spacer></Spacer>
               {bottomWidget()}
             </VStack>
@@ -245,6 +239,6 @@ export const GameArea = () => {
           validateKey(val);
         }}
       ></NewScanner>
-    </div>
+    </PageBackdrop>
   );
 };

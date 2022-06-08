@@ -9,7 +9,7 @@ const MainPanel = ({ children }) => {
       style={{
         width: "90vw",
         maxWidth: "500px",
-        textAlign: "center",
+        textAlign: "left",
         aspectRatio: 0.912,
         backgroundSize: "contain",
         backgroundClip: "border-box",

@@ -40,7 +40,7 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const axios = require("axios").default;
-  const serverUrl = "https://sd-treasure-hunt.azurewebsites.net";
+  const serverUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:5000";
   const [isLoading, setLoading] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["uid"]);
 
@@ -71,7 +71,9 @@ const LoginForm = () => {
       })
       .catch(function (error) {
         console.log(error);
-        if (error.response.status !== 200) alert(error.response.data.message);
+        if (error.response.status !== 200 && error.response.data !== undefined)
+          alert(error.response.data.message);
+        else alert(error.message);
       })
       .finally(function () {
         setLoading(false);
@@ -94,9 +96,9 @@ const LoginForm = () => {
   return (
     <Box my={8} textAlign="left">
       {cookies["uid"] ? (
-        <VStack>
+        <VStack spacing="25">
           <Link to="/">
-            <Button>Continue</Button>
+            <Button colorScheme="blue">Continue</Button>
           </Link>
           <Button colorScheme="red" variant="outline" onClick={handleLogout}>
             Logout

@@ -1,12 +1,11 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { useCookies } from "react-cookie";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Footer } from "./components/Footer";
+import { GameArea } from "./components/GameArea";
 import { Navbar } from "./components/Navbar";
 import LoginPage from "./pages/loginPage";
-import { GameArea } from "./components/GameArea";
-import { Navigate } from "react-router";
-import { useCookies } from "react-cookie";
 
 const App = () => {
   const [cookies] = useCookies(["uid"]);

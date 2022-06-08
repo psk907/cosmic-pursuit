@@ -1,6 +1,7 @@
+
 const { v4: uuidv4 } = require("uuid");
 
-module.exports = async function register(req, res, db) {
+async function register(req, db) {
   try {
     // if (!req.body)
     //   return res.status(400).json({
@@ -8,7 +9,7 @@ module.exports = async function register(req, res, db) {
     //   });
     for (let key of ["teamName", "teamNo", "password"])
       if (!req.body[key])
-        return res.status(400).json({
+        return console.log({
           message: `${key} is required.`,
         });
 
@@ -18,13 +19,12 @@ module.exports = async function register(req, res, db) {
 
     if (!teamNo)
       return res.status(400).json({ message: "teamNo must be an integer" });
-      
-    let exists = await db.collection("teams").findOne({ teamNo: teamNo });
-    if(exists ){
-        return res.status(400).json({ message: "Team already exists" });
-    }
-    let uid = uuidv4();
 
+    let uid = uuidv4();
+    let exists = await db.collection("teams").findOne({ teamNo: teamNo });
+    if(exists){
+        return console.log({ message: "Team already exists" });
+    }
     let teamData = {
       teamName: teamName,
       teamNo: teamNo,
@@ -45,9 +45,23 @@ module.exports = async function register(req, res, db) {
 
     let result = await db.collection("teams").insertOne(teamData);
 
-    return res.status(201).json({ ...result, message: "Team added" });
+    return console.log({ ...result, message: "Team added" });
+    
   } catch (err) {
     console.log(err);
-    return res.status(500).send(err);
   }
 };
+
+module.exports = async function (req,res,db){
+
+    // teamNo, teamName and password
+    let csv = require("csvtojson");
+    csv().fromFile(__dirname+"/sample.csv").then(async function (jsonObj) {
+        console.log(jsonObj);
+        console.log(req.body)
+        for(let team of jsonObj){
+            req.body = team;
+            await register(req,db);
+        }
+    });
+}
