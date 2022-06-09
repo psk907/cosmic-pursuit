@@ -3,7 +3,7 @@ import React from "react";
 import { MapInteractionCSS } from "react-map-interaction";
 import Modal from "react-modal";
 import CloseIcon from "../assets/close_icon.svg";
-import Map from "../assets/map.jpg";
+import Map from "../assets/map.svg";
 import Frame from "../assets/Popup_Frame.svg";
 
 Modal.setAppElement("#root");
@@ -22,7 +22,7 @@ export const MapModal = ({ handleClose, show, children }) => {
           style={{
             height: "80vh",
             position: "absolute",
-            top: "-15%",
+            top: "10%",
             maxWidth: "600px",
             aspectRatio: 0.5344,
             backgroundSize: "contain",
@@ -37,31 +37,30 @@ export const MapModal = ({ handleClose, show, children }) => {
         >
           <Box
             style={{
-              marginRight: "2%",
-              marginLeft: "2%",
-              paddingTop: "10%",
-              paddingBottom: "10%",
+              marginRight: "6%",
+              marginLeft: "6%",
+              paddingTop: "8 %",
+              paddingBottom: "8%",
               display: "flex",
-              // height: "85%",
+              height: "100%",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
-            <VStack justify="center">
-              <Box h="full">
-                <MapInteractionCSS>
-                  <Image src={Map} />
-                </MapInteractionCSS>
-              </Box>
-            </VStack>
             <IconButton
               colorScheme="BlackAlpha"
               isRound="true"
               onClick={handleClose}
               position="relative"
-              top="-45"
-              right="-15"
+              top="-7%"
+              right="-50%"
+              zIndex="100"
             >
               <Image height="5vh" src={CloseIcon}></Image>
             </IconButton>
+            <MapInteractionCSS>
+              <Image src={Map} fit="cover" />
+            </MapInteractionCSS>
           </Box>
         </div>
       </Center>
