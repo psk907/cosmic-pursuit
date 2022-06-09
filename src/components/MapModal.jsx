@@ -54,7 +54,7 @@ export const MapModal = ({ handleClose, show, children }) => {
               onClick={handleClose}
               position="relative"
               top="-7%"
-              right="-50%"
+              right="50%"
               zIndex="100"
             >
               <Image height="5vh" src={CloseIcon}></Image>
