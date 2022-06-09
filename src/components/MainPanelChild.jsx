@@ -6,12 +6,13 @@ export default function MainPanelChild({ children }) {
   return (
     <Box
       style={{
-        marginRight: "20%",
-        marginLeft: "20%",
-        paddingTop: "10%",
-        // paddingBottom: "10%",
+        marginRight: "22%",
+        marginLeft: "22%",
+        // paddingTop: "2%",
+        paddingBottom: "10%",
         display: "flex",
         height: "85%",
+        width: "64%",
       }}
     >
       {children}

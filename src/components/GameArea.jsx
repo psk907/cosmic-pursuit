@@ -1,3 +1,4 @@
+import { ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import {
   Button,
   FormControl,
@@ -6,17 +7,19 @@ import {
   Input,
   Spacer,
   Spinner,
+  Text,
   VStack,
 } from "@chakra-ui/react";
 import axios from "axios";
+import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import BottomPanel from "../assets/Bottom_Widget.svg";
+import TopPanel from "../assets/Top_Widget.svg";
 import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
 import { NewScanner } from "./NewScanner";
 import PageBackdrop from "./PageBackdrop";
-import parse from "html-react-parser";
 
 export const GameArea = () => {
   const [gameState, setgameState] = useState({});
@@ -47,6 +50,22 @@ export const GameArea = () => {
         }
       });
   }, [refreshCount]);
+
+  const isQrStage = () => {
+    return (
+      !loading &&
+      !gameState.unlockedClues[clueIndex].crackedClue &&
+      !gameState.unlockedClues[clueIndex].crackedRiddle
+    );
+  };
+
+  const isRiddleStage = () => {
+    return (
+      !loading &&
+      gameState.unlockedClues[clueIndex].crackedClue &&
+      !gameState.unlockedClues[clueIndex].crackedRiddle
+    );
+  };
 
   const initializeClueIndex = (data) => {
     let l = data["unlockedClues"].length;
@@ -91,8 +110,10 @@ export const GameArea = () => {
   const answerRiddle = () => {
     var l = gameState["unlockedClues"].length;
     let uid = cookies["uid"];
-    if (!riddleAns)
-      alert("Please type the answer to the riddle handed over to you.");
+    if (!riddleAns) {
+      alert("Please type the answer to the puzzle handed over to you.");
+      return;
+    }
     axios
       .post(`${serverUrl}/clues/submitRiddleAnswer`, {
         clueId: gameState["unlockedClues"][l - 1].clueId,
@@ -112,21 +133,10 @@ export const GameArea = () => {
   };
 
   const shouldRenderButtonWidget = () => {
-    return (
-      (!loading &&
-        !gameState.unlockedClues[clueIndex].crackedClue &&
-        !gameState.unlockedClues[clueIndex].crackedRiddle) ||
-      (!loading &&
-        gameState.unlockedClues[clueIndex].crackedClue &&
-        !gameState.unlockedClues[clueIndex].crackedRiddle)
-    );
+    return isQrStage() || isRiddleStage();
   };
   const buttonWidget = () => {
-    if (
-      !loading &&
-      !gameState.unlockedClues[clueIndex].crackedClue &&
-      !gameState.unlockedClues[clueIndex].crackedRiddle
-    ) {
+    if (isQrStage()) {
       return (
         <Button
           margin="5% 0%"
@@ -137,11 +147,7 @@ export const GameArea = () => {
           Scan QR
         </Button>
       );
-    } else if (
-      !loading &&
-      gameState.unlockedClues[clueIndex].crackedClue &&
-      !gameState.unlockedClues[clueIndex].crackedRiddle
-    )
+    } else if (isRiddleStage())
       return (
         <Button
           margin="5% 0%"
@@ -155,11 +161,7 @@ export const GameArea = () => {
   };
 
   const bottomWidget = () => {
-    if (
-      !loading &&
-      gameState.unlockedClues[clueIndex].crackedClue &&
-      !gameState.unlockedClues[clueIndex].crackedRiddle
-    ) {
+    if (isRiddleStage()) {
       return (
         <VStack>
           <form>
@@ -167,15 +169,20 @@ export const GameArea = () => {
               mt={4}
               onChange={(event) => setriddleAns(event.target.value)}
               value={riddleAns}
+              onSubmit={answerRiddle}
               isRequired
             >
-              <Input
-                placeholder="Enter the answer to the riddle"
-                color={"white"}
-              />
+              <Input placeholder="Enter the puzzle's answer" color="white" />
             </FormControl>
           </form>
         </VStack>
+      );
+    } else if (isQrStage()) {
+      return (
+        <h3 style={{ fontSize: "12px", fontWeight: "lighter" }}>
+          Once you reach the location, scan the QR code on the puzzle-sheet
+          handed over to you
+        </h3>
       );
     }
   };
@@ -184,7 +191,31 @@ export const GameArea = () => {
   return (
     <PageBackdrop>
       <MainPanel>
-        <MainPanelChild h="100%" w="100%">
+        <div
+          style={{
+            width: "64.92%",
+            textAlign: "center",
+            aspectRatio: 5.28,
+            top: "-10.5%",
+            position: "relative",
+            backgroundSize: "contain",
+            backgroundClip: "border-box",
+            backgroundImage: `url(${TopPanel})`,
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <HStack width="full" justify="space-between" px="22%">
+            <Button variant="unstyled" onClick={decrementClueIndex}>
+              <ChevronLeftIcon />
+            </Button>
+            {/* <Spacer></Spacer> */}
+            <Text style={{ fontSize: "10", fontWeight: "bold" }}>L3</Text>
+            <Button variant="unstyled" onClick={incrementClueIndex} p="0" m="0">
+              <ChevronRightIcon />
+            </Button>
+          </HStack>
+        </div>
+        <MainPanelChild>
           {loading ? (
             <VStack justify="center">
               <Spinner color="white" marginBottom="2rem"></Spinner>
@@ -192,20 +223,13 @@ export const GameArea = () => {
               <Heading size="l">Loading...</Heading>
             </VStack>
           ) : (
-            <VStack>
-              <HStack w="100hw" justify="space-between">
-                <Button variant="outline" onClick={decrementClueIndex}>
-                  {" "}
-                  {"<"}
-                </Button>
-                <h2>{getFocusedClue().title}</h2>
-                <Button variant="outline" onClick={incrementClueIndex}>
-                  {" "}
-                  {">"}
-                </Button>
-              </HStack>
-              <Spacer></Spacer>
-              <div style={{ fontSize: 13 }}>
+            <VStack px="4%">
+              <h3 style={{ fontSize: "15", fontWeight: "bold" }}>
+                {isQrStage()
+                  ? "Use this 4-liner to figure out the next location:"
+                  : "You used the 4-liner to find the location!"}
+              </h3>
+              <div style={{ fontSize: 14, paddingTop: "12" }}>
                 {'"'}
                 {parse(getFocusedClue().body)}
                 {'"'}
@@ -221,12 +245,15 @@ export const GameArea = () => {
               width: "47%",
               textAlign: "center",
               aspectRatio: 2.87,
-              bottom: "-7.6%",
+              bottom: "-2%",
               position: "relative",
               backgroundSize: "contain",
               backgroundClip: "border-box",
               backgroundImage: `url(${BottomPanel})`,
               backgroundRepeat: "no-repeat",
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
             {buttonWidget()}
