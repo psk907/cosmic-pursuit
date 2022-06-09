@@ -31,6 +31,8 @@ export const NewScanner = ({ show, handleClose, callback }) => {
             flexDirection: "column",
             justifyContent: "center",
             padding: "6%",
+            position: "absolute",
+            top: "25%",
           }}
         >
           <Box
@@ -52,7 +54,7 @@ export const NewScanner = ({ show, handleClose, callback }) => {
           >
             <QrReader
               constraints={{
-                facingMode: "environment",
+                facingMode: "rear",
                 aspectRatio: 1,
               }}
               onResult={(result, error) => {
@@ -73,7 +75,6 @@ export const NewScanner = ({ show, handleClose, callback }) => {
           </Box>
         </div>
       </Center>
-
       <IconButton
         colorScheme="BlackAlpha"
         isRound="true"
@@ -82,7 +83,7 @@ export const NewScanner = ({ show, handleClose, callback }) => {
         }}
         style={{
           position: "absolute",
-          top: 0,
+          top: "22%",
           right: 15,
         }}
       >

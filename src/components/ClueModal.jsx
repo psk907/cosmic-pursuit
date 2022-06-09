@@ -14,7 +14,6 @@ import Frame from "../assets/Popup_Frame.svg";
 Modal.setAppElement("#root");
 
 export const InfoModal = ({ handleClose, show, children }) => {
-  // TODO: Add a black tint under the modal as an overlay
   return (
     <Modal
       isOpen={show}
@@ -40,38 +39,79 @@ export const InfoModal = ({ handleClose, show, children }) => {
             justifyContent: "space-between",
           }}
         >
+          <IconButton
+            colorScheme="BlackAlpha"
+            isRound="true"
+            onClick={handleClose}
+            position="relative"
+            top="-2%"
+            left="-45%"
+            zIndex="100"
+          >
+            <Image height="5vh" src={CloseIcon}></Image>
+          </IconButton>
           <Box
             style={{
-              marginRight: "6%",
-              marginLeft: "6%",
-              paddingTop: "8 %",
-              paddingBottom: "8%",
+              marginRight: "8%",
+              marginLeft: "8%",
+              // marginTop: "10%",
+              marginBottom: "10%",
               display: "flex",
               height: "100%",
               flexDirection: "column",
               alignItems: "center",
+              overflowY: "scroll",
             }}
           >
-            <IconButton
-              colorScheme="BlackAlpha"
-              isRound="true"
-              onClick={handleClose}
-              position="relative"
-              top="-7%"
-              right="50%"
-              zIndex="100"
-            >
-              <Image height="5vh" src={CloseIcon}></Image>
-            </IconButton>
             <Heading>Rules</Heading>
             <Text p={2}>
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum."
+              <ol>
+                <li>
+                  1) All the clues will be hidden in the vicinity of the Map
+                  provided. (Inside the campus of MSRIT)
+                </li>
+                <li>
+                  2) You have to complete the treasure hunt within a stipulated
+                  time period.
+                </li>
+                <li>
+                  3) The clues will be handed over to the teams by the STARDUST
+                  Volunteers.
+                </li>
+                <li>4) Do not break anything.</li>
+                <li>
+                  5) Don't jump over compounds or harm plants or property.
+                </li>
+                <li>
+                  6) Teams are not permitted inside any classrooms or staff
+                  rooms.
+                </li>
+                <li>
+                  7) Team members should not scream around the campus when
+                  classes are in session, as strict disciplinary rules must be
+                  maintained.
+                </li>
+                <li>
+                  8) If a team/teams continues to disturb the discipline of the
+                  campus even after warning, immediate action will be taken
+                  leading to disqualification.
+                </li>
+                <li>
+                  9) Internet access is needed for answering the questions.
+                </li>
+                <li>
+                  10) The website can be accessed by a maximum of 2 users from a
+                  team.
+                </li>
+                <li>
+                  11) The winner will be decided based on the team which
+                  finishes the hunt first
+                </li>
+                <li>
+                  12) Incase of any dispute, the decision of RIT STARDUST will
+                  be final
+                </li>
+              </ol>
             </Text>
           </Box>
         </div>
