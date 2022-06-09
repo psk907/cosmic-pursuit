@@ -33,6 +33,7 @@ export const MapModal = ({ handleClose, show, children }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
+            zIndex: "2",
           }}
         >
           <Box

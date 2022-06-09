@@ -44,9 +44,15 @@ export const LeaderModal = ({ handleClose, show, iter, children }) => {
   const SetTableRow = (team) => {
     return (
       <Tr>
-        <Td>{team.rank}</Td>
-        <Td>{team.teamName}</Td>
-        <Td>{team.score}</Td>
+        <Td>
+          <p>{team.rank}</p>
+        </Td>
+        <Td>
+          <p>{team.teamName}</p>
+        </Td>
+        <Td>
+          <p>{team.score}</p>
+        </Td>
       </Tr>
     );
   };

@@ -1,4 +1,4 @@
-import MainWindow from "../assets/MainWindowBg.png";
+import MainWindow from "../assets/MainWindowBg.svg";
 
 /**
  * Renders the Panel Graphic with appropriate scaling and layout
