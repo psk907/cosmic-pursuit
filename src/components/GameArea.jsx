@@ -205,7 +205,11 @@ export const GameArea = () => {
                 </Button>
               </HStack>
               <Spacer></Spacer>
-              <div style={{ fontSize: 13 }}>{parse(getFocusedClue().body)}</div>
+              <div style={{ fontSize: 13 }}>
+                {'"'}
+                {parse(getFocusedClue().body)}
+                {'"'}
+              </div>
               <Spacer></Spacer>
               {bottomWidget()}
             </VStack>
