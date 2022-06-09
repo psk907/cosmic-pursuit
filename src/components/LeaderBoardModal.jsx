@@ -8,6 +8,15 @@ import {
   VStack,
   Box,
   Text,
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer,
   Heading,
   HStack,
   Spacer,
@@ -37,24 +46,11 @@ export const LeaderModal = ({ handleClose, show, iter, children }) => {
 
   const SetTableRow = (team) => {
     return (
-      <Box p={1} borderRadius="lg" shadow="md" m={0} w="100%" bgGradient='linear(to-l, #1A2980, #021B79)'>
-        <Grid templateColumns="repeat(5, 1fr)" gap={4} w="100%">
-          <GridItem colSpan={3} h="10">
-            <Heading size={5} pr={5} mt={1}>
-              {team.teamName}
-            </Heading>
-          </GridItem>
-          <GridItem colStart={4} colEnd={6} h="10">
-          <Heading size='sm' mt={1}>{team.score}</Heading>
-          </GridItem>
-        </Grid>
-        {/* <HStack dir="row" m={0} w='100%'>
-          <Heading size={5} pr={5} w='50%'>
-            {team.teamName}
-          </Heading>
-         
-        </HStack> */}
-      </Box>
+      <Tr>
+        <Td>x</Td>
+        <Td>{team.teamName}</Td>
+        <Td>{team.score}</Td>
+      </Tr>
     );
   };
 
@@ -68,32 +64,38 @@ export const LeaderModal = ({ handleClose, show, iter, children }) => {
     >
       <Center>
         <MainPanel>
-          <MainPanelChild>
-            <VStack w="100%">
-              <Flex mb={2}>
-                <IconButton
-                  colorScheme="BlackAlpha"
-                  isRound="true"
-                  onClick={handleClose}
-                >
-                  <Image height="5vh" src={CloseIcon}></Image>
-                </IconButton>
-              </Flex>
-              <Box h="full" pb={20} w={200}>
-                <Heading size="md" pb={2} mt={-1}>
-                  Leader Board
-                </Heading>
-                {!isLoading ? (
-                  <VStack h="full" overflowY="scroll">
-                  {count.current === iter ? void 0 : (count.current = iter)}
-                    {boardState.map(SetTableRow)}
-                  </VStack>
-                ) : (
-                  void 0
-                )}
-              </Box>
-            </VStack>
-          </MainPanelChild>
+          <div>
+            <IconButton
+              colorScheme="BlackAlpha"
+              isRound="true"
+              onClick={handleClose}
+              position="relative"
+              top="-45"
+              right="-15"
+            >
+              <Image height="5vh" src={CloseIcon}></Image>
+            </IconButton>
+            {/*             
+              <Heading size="md" pb={2} mt={-1}>
+              Leaderboard
+              </Heading>
+            */}
+            <TableContainer>
+              <Table variant="simple">
+                <Thead>
+                  <Tr>
+                    <Th isNumeric>Rank</Th>
+                    <Th>Team</Th>
+                    <Th isNumeric>Score</Th>
+                  </Tr>
+                </Thead>
+
+                {count.current === iter ? void 0 : (count.current = iter)}
+
+                {boardState.map(SetTableRow)}
+              </Table>
+            </TableContainer>
+          </div>
         </MainPanel>
       </Center>
     </Modal>
