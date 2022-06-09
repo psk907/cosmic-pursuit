@@ -165,6 +165,9 @@ export const GameArea = () => {
       return (
         <VStack>
           <form>
+            <h3 style={{ fontSize: "11px", fontWeight: "lighter" }}>
+              Solve the puzzle and enter your answer here
+            </h3>
             <FormControl
               mt={4}
               onChange={(event) => setriddleAns(event.target.value)}
@@ -229,10 +232,15 @@ export const GameArea = () => {
               <h3 style={{ fontSize: "15", fontWeight: "bold" }}>
                 {isQrStage()
                   ? "Use this 4-liner to figure out the next location:"
-                  : "You used the 4-liner to find the location!"}
+                  : "Congrats you've reached the right location !"}
               </h3>
               <div
-                style={{ fontSize: 14, paddingTop: "12", overflowY: "scroll" }}
+                style={{
+                  fontSize: 14,
+                  paddingTop: "12",
+                  overflowY: "scroll",
+                  fontStyle: "italic",
+                }}
               >
                 {'"'}
                 {parse(getFocusedClue().body)}
