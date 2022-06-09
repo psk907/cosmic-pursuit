@@ -9,7 +9,7 @@ module.exports = async function (req, res, db) {
     let params = ["title", "clueId", "body", "level"];
     console.log(req.body);
     for (let param of params) {
-      if (!req.body[param]) {
+      if (req.body[param] !== 0 && !req.body[param]) {
         res.status(400).send("Missing parameter in request body: " + param);
         return;
       }

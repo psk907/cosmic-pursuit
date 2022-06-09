@@ -18,10 +18,10 @@ module.exports = async function register(req, res, db) {
 
     if (!teamNo)
       return res.status(400).json({ message: "teamNo must be an integer" });
-      
+
     let exists = await db.collection("teams").findOne({ teamNo: teamNo });
-    if(exists ){
-        return res.status(400).json({ message: "Team already exists" });
+    if (exists) {
+      return res.status(400).json({ message: "Team already exists" });
     }
     let uid = uuidv4();
 
@@ -33,8 +33,8 @@ module.exports = async function register(req, res, db) {
       score: 0.0,
       unlockedClues: [
         {
-          clueId: "cid11",
-          level: 1,
+          clueId: "cid01",
+          level: 0,
           isUnlocked: true,
           crackedClue: false,
           crackedRiddle: false,
