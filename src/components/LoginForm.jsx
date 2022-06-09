@@ -17,7 +17,7 @@ export const LoginArea = () => {
   return (
     <MainPanel>
       <MainPanelChild>
-        <VStack height="100%" justify="center">
+        <VStack height="90%" width="90%" justify="center" pt="30%">
           <LoginHeader />
           <LoginForm />
         </VStack>
@@ -29,7 +29,9 @@ export const LoginArea = () => {
 const LoginHeader = () => {
   return (
     <Box textAlign="center">
-      <Heading color={"white"}>Welcome</Heading>
+      <Heading color={"white"} size="xl">
+        Welcome
+      </Heading>
     </Box>
   );
 };

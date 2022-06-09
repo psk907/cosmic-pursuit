@@ -209,7 +209,9 @@ export const GameArea = () => {
               <ChevronLeftIcon />
             </Button>
             {/* <Spacer></Spacer> */}
-            <Text style={{ fontSize: "10", fontWeight: "bold" }}>L3</Text>
+            <Text style={{ fontSize: "10", fontWeight: "bold" }}>
+              {!loading ? getFocusedClue().title : ""}
+            </Text>
             <Button variant="unstyled" onClick={incrementClueIndex} p="0" m="0">
               <ChevronRightIcon />
             </Button>
@@ -217,7 +219,7 @@ export const GameArea = () => {
         </div>
         <MainPanelChild>
           {loading ? (
-            <VStack justify="center">
+            <VStack justify="center" width="90%">
               <Spinner color="white" marginBottom="2rem"></Spinner>
 
               <Heading size="l">Loading...</Heading>
@@ -229,7 +231,9 @@ export const GameArea = () => {
                   ? "Use this 4-liner to figure out the next location:"
                   : "You used the 4-liner to find the location!"}
               </h3>
-              <div style={{ fontSize: 14, paddingTop: "12" }}>
+              <div
+                style={{ fontSize: 14, paddingTop: "12", overflowY: "scroll" }}
+              >
                 {'"'}
                 {parse(getFocusedClue().body)}
                 {'"'}
@@ -259,7 +263,17 @@ export const GameArea = () => {
             {buttonWidget()}
           </div>
         ) : (
-          <div></div>
+          <div
+            style={{
+              width: "47%",
+              aspectRatio: 2.87,
+              bottom: "-2%",
+              position: "relative",
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          ></div>
         )}
       </MainPanel>
       <NewScanner
