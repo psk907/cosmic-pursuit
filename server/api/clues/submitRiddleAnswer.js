@@ -49,7 +49,7 @@ module.exports = async function submitAnswer(req, res, db) {
   let levels = await db.collection("levels").find({}).toArray();
   let level = levels.find((level) => level["clues"].includes(clueId));
   if (!level) {
-    return res.status(404).json({ message: "Invalid clue , Level not found." });
+    return res.status(404).json({ message: "Invalid clue, Level not found." });
   }
   let riddle = level.riddles.find((r) => r["scanKey"] === clueObj.scanKey);
   if (!riddle) {
@@ -75,16 +75,16 @@ module.exports = async function submitAnswer(req, res, db) {
         score: 0.0,
       });
       await db.collection("teams").updateOne({ uid: uid }, { $set: team });
-      res.status(200).json({
+      return res.status(200).json({
         message: "Riddle Solved! You can now advance to the next clue.",
       });
     } else {
       await db.collection("teams").updateOne({ uid: uid }, { $set: team });
-      res.status(200).json({
+      return res.status(200).json({
         message: "Congratulations! You have successfully solved all riddles.",
       });
     }
   } else {
-    res.status(403).json({ message: "Wrong Answer." });
+    return res.status(403).json({ message: "Wrong Answer." });
   }
 };

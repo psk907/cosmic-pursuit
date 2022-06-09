@@ -10,7 +10,13 @@ async function unlockRiddle(team, locationPoints, clueId, scanKey, db, res) {
       team.lastSubmissionTimeStamp = new Date();
       team.score += locationPoints;
       await db.collection("teams").updateOne({ uid: team.uid }, { $set: team });
-      res.status(200).send("Riddle unlocked successfully");
+      res
+        .status(200)
+        .send(
+          `You just earned ` +
+            locationPoints +
+            ` points ! Now solve the puzzle/activity given to you.`
+        );
     } else {
       if (!unlockedClue) {
         res.status(400).send("Clue not unlocked yet");
