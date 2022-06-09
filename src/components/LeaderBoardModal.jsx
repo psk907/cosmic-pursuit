@@ -1,32 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import Modal from "react-modal";
 import {
-  Flex,
   IconButton,
   Image,
   Center,
-  VStack,
   Box,
-  Text,
   Table,
   Thead,
-  Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
-  Heading,
-  HStack,
-  Spacer,
-  Grid,
-  GridItem,
 } from "@chakra-ui/react";
 import CloseIcon from "../assets/close_icon.svg";
-import MainPanel from "./MainPanel";
-import MainPanelChild from "./MainPanelChild";
 import axios from "axios";
+import Frame from "../assets/Popup_Frame.svg";
 
 Modal.setAppElement("#root");
 
@@ -38,16 +26,25 @@ export const LeaderModal = ({ handleClose, show, iter, children }) => {
 
   useEffect(() => {
     axios.get(`${serverUrl}/getLeaderboard`).then((res) => {
+      res.data = setRank(res.data);
       setboardState(res.data);
       setLoading(false);
-      console.log("useEffect");
     });
   }, [count.current]);
+
+  const setRank = (data) => {
+    if (data) {
+      for (let i = 0; i < data.length; i++) {
+        data[i].rank = i + 1;
+      }
+    }
+    return data;
+  };
 
   const SetTableRow = (team) => {
     return (
       <Tr>
-        <Td>x</Td>
+        <Td>{team.rank}</Td>
         <Td>{team.teamName}</Td>
         <Td>{team.score}</Td>
       </Tr>
@@ -63,40 +60,67 @@ export const LeaderModal = ({ handleClose, show, iter, children }) => {
       overlayClassName="ReactModal__Overlay"
     >
       <Center>
-        <MainPanel>
-          <div>
+        <div
+          style={{
+            height: "80vh",
+            position: "absolute",
+            top: "10%",
+            maxWidth: "600px",
+            aspectRatio: 0.5344,
+            backgroundSize: "contain",
+            backgroundClip: "border-box",
+            backgroundImage: `url(${Frame})`,
+            backgroundRepeat: "no-repeat",
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box
+            style={{
+              marginRight: "6%",
+              marginLeft: "6%",
+              paddingTop: "8 %",
+              paddingBottom: "8%",
+              display: "flex",
+              height: "100%",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <IconButton
               colorScheme="BlackAlpha"
               isRound="true"
               onClick={handleClose}
               position="relative"
-              top="-45"
-              right="-15"
+              top="-7%"
+              right="50%"
+              zIndex="100"
             >
               <Image height="5vh" src={CloseIcon}></Image>
             </IconButton>
-            {/*             
-              <Heading size="md" pb={2} mt={-1}>
-              Leaderboard
-              </Heading>
-            */}
+            <Box display="none">
+              {count.current === iter ? void 0 : (count.current = iter)}
+            </Box>
             <TableContainer>
               <Table variant="simple">
                 <Thead>
                   <Tr>
-                    <Th isNumeric>Rank</Th>
-                    <Th>Team</Th>
-                    <Th isNumeric>Score</Th>
+                    <Th isNumeric color="white">
+                      Rank
+                    </Th>
+                    <Th color="white">Team</Th>
+                    <Th isNumeric color="white">
+                      Score
+                    </Th>
                   </Tr>
+                  {boardState.map(SetTableRow)}
                 </Thead>
-
-                {count.current === iter ? void 0 : (count.current = iter)}
-
-                {boardState.map(SetTableRow)}
               </Table>
             </TableContainer>
-          </div>
-        </MainPanel>
+          </Box>
+        </div>
       </Center>
     </Modal>
   );
