@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import BottomPanel from "../assets/Bottom_Widget.svg";
 import TopPanel from "../assets/Top_Widget.svg";
+import { AltQrTextBox } from "./AltQrTextBox";
 import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
 import { NewScanner } from "./NewScanner";
@@ -24,6 +25,7 @@ import PageBackdrop from "./PageBackdrop";
 export const GameArea = () => {
   const [gameState, setgameState] = useState({});
   const [showScanner, setshowScanner] = useState(false);
+  const [showAltQrTextBox,setshowAltQrTextBox] = useState(false);
   const [scannedKey, setScannedKey] = useState();
   const [riddleAns, setriddleAns] = useState();
   const [loading, setloading] = useState(true);
@@ -90,6 +92,9 @@ export const GameArea = () => {
     var l = gameState["unlockedClues"].length;
     let uid = cookies["uid"];
     console.log(val);
+    if(val){
+      val = val.toLowerCase()
+    }
     axios
       .post(`${serverUrl}/clues/validateQRKey`, {
         clueId: gameState["unlockedClues"][l - 1].clueId,
@@ -100,11 +105,13 @@ export const GameArea = () => {
         console.log(response.data);
         if (response.status === 200) {
           alert(response.data);
+          setshowAltQrTextBox(false);
           setrefreshCount(refreshCount + 1);
         }
       })
       .catch((e) => {
-        alert(e.response.data);
+        alert("Invalid password")
+        // alert(e.response.data);
       });
   };
   const answerRiddle = () => {
@@ -182,11 +189,14 @@ export const GameArea = () => {
       );
     } else if (isQrStage()) {
       return (
+        <>
         <h3 style={{ fontSize: "12px", fontWeight: "lighter" }}>
           {getFocusedClue().level === 0
             ? "Scan the QR code on the puzzle-sheet handed over to you"
             : "Once you reach the location, scan the QR code on the puzzle-sheet handed over to you"}
         </h3>
+        <h4>Unable to scan? &nbsp;<button  onClick={()=>setshowAltQrTextBox(true)}>  Click here</button></h4>
+        </>
       );
     }
   };
@@ -292,6 +302,11 @@ export const GameArea = () => {
         handleClose={setshowScanner}
         callbackFn={validateKey}
       ></NewScanner>
+      <AltQrTextBox
+        show={showAltQrTextBox}
+        handleClose={setshowAltQrTextBox}
+        callbackFn={validateKey}
+      ></AltQrTextBox>
     </PageBackdrop>
   );
 };
