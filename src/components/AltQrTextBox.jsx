@@ -16,8 +16,8 @@ import CloseIcon from "../assets/close_icon.svg";
 
 export const AltQrTextBox = ({ show, handleClose, callbackFn }) => {
   const [data, setData] = useState();
-  const [password,setpassword] = useState('');
-  const [loading,setLoading] = useState(false);
+  const [password, setpassword] = useState("");
+  const [loading, setLoading] = useState(false);
   return (
     <Modal
       isOpen={show}
@@ -54,7 +54,7 @@ export const AltQrTextBox = ({ show, handleClose, callbackFn }) => {
               aspectRatio: 1,
               margin: "0",
               objectFit: "cover",
-              padding: "0",
+              padding: "4% 10%",
               alignContent: "center",
               display: "flex",
               flexDirection: "column",
@@ -69,24 +69,32 @@ export const AltQrTextBox = ({ show, handleClose, callbackFn }) => {
               value={password}
               isRequired
             >
-              <h4 color={"white"}>Password</h4>
+              <h4 color={"white"}>Scan the QR and enter the code embedded</h4>
               <Input
                 // type="password"
                 placeholder="Enter your code"
                 color={"white"}
               />
+              <br></br>
+              <h4
+                color={"white"}
+                style={{ fontSize: "12px", fontWeight: "lighter" }}
+              >
+                You may use any camera app of your choice
+              </h4>
               <Button
                 margin="5% 0%"
                 width={"80%"}
-                variant="unstyled"
-                enabled = {!loading}
-                onClick={()=>{
-                  if(!password ||password.length==0){
-                      alert("Enter password")
-                  }
-                  else{
+                variant="outlined"
+                colorScheme="white"
+                enabled={!loading}
+                onClick={() => {
+                  if (!password || password.length == 0) {
+                    alert("Please enter the code");
+                  } else {
                     setLoading(true);
-                  return callbackFn(password);}
+                    return callbackFn(password);
+                  }
                 }}
               >
                 Submit

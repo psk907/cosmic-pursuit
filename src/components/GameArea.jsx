@@ -25,7 +25,7 @@ import PageBackdrop from "./PageBackdrop";
 export const GameArea = () => {
   const [gameState, setgameState] = useState({});
   const [showScanner, setshowScanner] = useState(false);
-  const [showAltQrTextBox,setshowAltQrTextBox] = useState(false);
+  const [showAltQrTextBox, setshowAltQrTextBox] = useState(false);
   const [scannedKey, setScannedKey] = useState();
   const [riddleAns, setriddleAns] = useState();
   const [loading, setloading] = useState(true);
@@ -92,8 +92,8 @@ export const GameArea = () => {
     var l = gameState["unlockedClues"].length;
     let uid = cookies["uid"];
     console.log(val);
-    if(val){
-      val = val.toLowerCase()
+    if (val) {
+      val = val.toLowerCase();
     }
     axios
       .post(`${serverUrl}/clues/validateQRKey`, {
@@ -110,7 +110,7 @@ export const GameArea = () => {
         }
       })
       .catch((e) => {
-        alert("Invalid password")
+        alert("Invalid code. Please use the QR on the puzzle sheet only.");
         // alert(e.response.data);
       });
   };
@@ -190,12 +190,27 @@ export const GameArea = () => {
     } else if (isQrStage()) {
       return (
         <>
-        <h3 style={{ fontSize: "12px", fontWeight: "lighter" }}>
-          {getFocusedClue().level === 0
-            ? "Scan the QR code on the puzzle-sheet handed over to you"
-            : "Once you reach the location, scan the QR code on the puzzle-sheet handed over to you"}
-        </h3>
-        <h4 style={{ fontSize: "12px", fontWeight: "lighter" , textDecoration:"underline"}}>Unable to scan? &nbsp;<button style={{textDecoration:"underline"}} onClick={()=>setshowAltQrTextBox(true)}>  Click here</button></h4>
+          <h3 style={{ fontSize: "12px", fontWeight: "lighter" }}>
+            {getFocusedClue().level === 0
+              ? "Scan the QR code on the puzzle-sheet handed over to you"
+              : "Once you reach the location, scan the QR code on the puzzle-sheet handed over to you"}
+          </h3>
+          <h4
+            style={{
+              fontSize: "12px",
+              fontWeight: "lighter",
+              textDecoration: "underline",
+            }}
+          >
+            Unable to scan? &nbsp;
+            <button
+              style={{ textDecoration: "underline" }}
+              onClick={() => setshowAltQrTextBox(true)}
+            >
+              {" "}
+              Click here
+            </button>
+          </h4>
         </>
       );
     }
