@@ -1,13 +1,20 @@
-import { Box, Center, IconButton, Image } from "@chakra-ui/react";
+import { Box, Center, Heading, IconButton, Image } from "@chakra-ui/react";
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { QrReader } from "react-qr-reader";
+import QrReader from "react-qr-scanner";
 import CircularWindow from "../assets/Circuar_Window.svg";
 import CloseIcon from "../assets/close_icon.svg";
 
 export const NewScanner = ({ show, handleClose, callbackFn }) => {
   const [data, setData] = useState();
 
+  const handleScan = (d) => {
+    setData(d);
+    console.log(d);
+  };
+  const handleError = (err) => {
+    console.error(err);
+  };
   return (
     <Modal
       isOpen={show}
@@ -53,26 +60,15 @@ export const NewScanner = ({ show, handleClose, callbackFn }) => {
             }}
           >
             <QrReader
-              constraints={{
-                facingMode: "environment",
-                aspectRatio: 1,
-              }}
-              onResult={(result, error) => {
-                if (!!result && !data) {
-                  console.log(result);
-
-                  setData(result?.text);
-                  handleClose(false);
-                  return callbackFn(result.text);
-                }
-
-                if (!!error) {
-                  console.info(error);
-                }
-              }}
+              delay={100}
+              onError={handleError}
+              onScan={handleScan}
               style={{ width: "100%" }}
+              legacyMode={true}
+              facingMode="rear"
             />
           </Box>
+          <Heading>{data}</Heading>
         </div>
       </Center>
       <IconButton
