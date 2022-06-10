@@ -195,7 +195,7 @@ export const GameArea = () => {
             ? "Scan the QR code on the puzzle-sheet handed over to you"
             : "Once you reach the location, scan the QR code on the puzzle-sheet handed over to you"}
         </h3>
-        <h4>Unable to scan? &nbsp;<button  onClick={()=>setshowAltQrTextBox(true)}>  Click here</button></h4>
+        <h4 style={{ fontSize: "12px", fontWeight: "lighter" , textDecoration:"underline"}}>Unable to scan? &nbsp;<button style={{textDecoration:"underline"}} onClick={()=>setshowAltQrTextBox(true)}>  Click here</button></h4>
         </>
       );
     }
