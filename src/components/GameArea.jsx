@@ -183,8 +183,9 @@ export const GameArea = () => {
     } else if (isQrStage()) {
       return (
         <h3 style={{ fontSize: "12px", fontWeight: "lighter" }}>
-          Once you reach the location, scan the QR code on the puzzle-sheet
-          handed over to you
+          {getFocusedClue().level === 0
+            ? "Scan the QR code on the puzzle-sheet handed over to you"
+            : "Once you reach the location, scan the QR code on the puzzle-sheet handed over to you"}
         </h3>
       );
     }
@@ -230,7 +231,9 @@ export const GameArea = () => {
           ) : (
             <VStack px="4%">
               <h3 style={{ fontSize: "15", fontWeight: "bold" }}>
-                {isQrStage()
+                {getFocusedClue().level === 0
+                  ? "Instructions:"
+                  : isQrStage()
                   ? "Use this 4-liner to figure out the next location:"
                   : "Congrats you've reached the right location !"}
               </h3>
