@@ -27,6 +27,62 @@ async function unlockRiddle(team, locationPoints, clueId, scanKey, db, res) {
     return false;
   }
 }
+
+async function unlockNextClueBypass(
+  team,
+  locationPoints,
+  riddleObj,
+  clueId,
+  scanKey,
+  db,
+  res
+) {
+  try {
+    /// Unlocks riddle by adding crackedClueTimestamp and setting crackedClue to true for a team.
+    let unlockedClue = team.unlockedClues.find((r) => r.clueId == clueId);
+    if (unlockedClue && !unlockedClue.crackedClue) {
+      unlockedClue.crackedClue = true;
+      unlockedClue.crackedRiddle = true;
+      unlockedClue.crackedClueTimestamp = new Date();
+      unlockedClue.crackedRiddleTimeStamp = new Date();
+      unlockedClue.score += level.riddlePoints;
+      unlockedClue.scanKey = scanKey;
+      unlockedClue.score += locationPoints;
+      team.score += level.riddlePoints;
+      team.score += locationPoints;
+      team.lastSubmissionTimeStamp = new Date();
+      if (riddleObj.followclueId) {
+        let followClue = await db
+          .collection("clues")
+          .findOne({ clueId: clueId });
+        if (!followClue)
+          return res.send("You've completed all challenges!! Wohooo !!!");
+        team.unlockedClues.push({
+          clueId: followClue.clueId,
+          level: followClue.level,
+          isUnlocked: true,
+          crackedClue: false,
+          crackedRiddle: false,
+          score: 0.0,
+        });
+      }
+      await db.collection("teams").updateOne({ uid: team.uid }, { $set: team });
+      return res
+        .status(200)
+        .send(
+          `Looks like that was the last code to scan.. Congrats!! You're now a winner !`
+        );
+    } else {
+      if (!unlockedClue) {
+        res.status(400).send("Clue not unlocked yet");
+      } else res.status(201).send("Riddle already unlocked");
+    }
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+}
+
 async function checkIfClueBelongsToLevel(req, res, db) {
   try {
     let clueId = req.body.clueId;
@@ -62,6 +118,23 @@ async function checkIfClueBelongsToLevel(req, res, db) {
       res.status(400).send("provided scanKey not in the same level");
       return false;
     }
+
+    let riddleObj = level.riddles.find((rid) => rid.scanKey === scanKey);
+
+    // There is no riddle to this level
+    if (riddleObj.answer === "" || !riddleObj.answer) {
+      await unlockNextClueBypass(
+        team,
+        level.locationPoints,
+        riddleObj,
+        clueId,
+        scanKey,
+        db,
+        res
+      );
+      return true;
+    }
+
     await unlockRiddle(team, level.locationPoints, clueId, scanKey, db, res);
 
     return true;
