@@ -21,6 +21,7 @@ import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
 import { NewScanner } from "./NewScanner";
 import PageBackdrop from "./PageBackdrop";
+import Disqualified from "../assets/DEAD.svg";
 
 export const GameArea = () => {
   const [gameState, setgameState] = useState({});
@@ -219,99 +220,133 @@ export const GameArea = () => {
   // if (!cookies["uid"]) return <Navigate to="/" />;
   return (
     <PageBackdrop>
-      <MainPanel>
+      {!loading && gameState.isEliminated === true ? (
         <div
           style={{
-            width: "64.92%",
+            width: "80.92%",
+            maxWidth: "600px",
+            height: "90%",
+            top: "25%",
+            position: "absolute",
             textAlign: "center",
             aspectRatio: 5.28,
-            top: "-10.5%",
             position: "relative",
             backgroundSize: "contain",
             backgroundClip: "border-box",
-            backgroundImage: `url(${TopPanel})`,
+            backgroundImage: `url(${Disqualified})`,
             backgroundRepeat: "no-repeat",
+            padding: "20% 12%",
           }}
         >
-          <HStack width="full" justify="space-between" px="22%">
-            <Button variant="unstyled" onClick={decrementClueIndex}>
-              <ChevronLeftIcon />
-            </Button>
-            {/* <Spacer></Spacer> */}
-            <Text style={{ fontSize: "10", fontWeight: "bold" }}>
-              {!loading ? getFocusedClue().title : ""}
-            </Text>
-            <Button variant="unstyled" onClick={incrementClueIndex} p="0" m="0">
-              <ChevronRightIcon />
-            </Button>
-          </HStack>
+          <Heading size="l">YOU ARE ELIMINATED !!</Heading>
+          <br />
+          <p>
+            The top 10 teams would be advancing to the next level.
+            <br />
+            <br />
+            Thank you for your participation !!
+          </p>
         </div>
-        <MainPanelChild>
-          {loading ? (
-            <VStack justify="center" width="90%">
-              <Spinner color="white" marginBottom="2rem"></Spinner>
-
-              <Heading size="l">Loading...</Heading>
-            </VStack>
-          ) : (
-            <VStack px="4%">
-              <h3 style={{ fontSize: "15", fontWeight: "bold" }}>
-                {getFocusedClue().level === 0
-                  ? "Instructions:"
-                  : isQrStage()
-                  ? "Use this 4-liner to figure out the next location:"
-                  : "Congrats you've reached the right location !"}
-              </h3>
-              <div
-                style={{
-                  fontSize: 14,
-                  paddingTop: "12",
-                  overflowY: "scroll",
-                  fontStyle: "italic",
-                }}
-              >
-                {'"'}
-                {parse(getFocusedClue().body)}
-                {'"'}
-              </div>
-              <Spacer></Spacer>
-              {bottomWidget()}
-            </VStack>
-          )}
-        </MainPanelChild>
-        {shouldRenderButtonWidget() ? (
+      ) : (
+        <MainPanel>
           <div
             style={{
-              width: "47%",
+              width: "64.92%",
               textAlign: "center",
-              aspectRatio: 2.87,
-              bottom: "-2%",
+              aspectRatio: 5.28,
+              top: "-10.5%",
               position: "relative",
               backgroundSize: "contain",
               backgroundClip: "border-box",
-              backgroundImage: `url(${BottomPanel})`,
+              backgroundImage: `url(${TopPanel})`,
               backgroundRepeat: "no-repeat",
-              alignItems: "center",
-              display: "flex",
-              flexDirection: "column",
             }}
           >
-            {buttonWidget()}
+            <HStack width="full" justify="space-between" px="22%">
+              <Button variant="unstyled" onClick={decrementClueIndex}>
+                <ChevronLeftIcon />
+              </Button>
+              {/* <Spacer></Spacer> */}
+              <Text style={{ fontSize: "10", fontWeight: "bold" }}>
+                {!loading ? getFocusedClue().title : ""}
+              </Text>
+              <Button
+                variant="unstyled"
+                onClick={incrementClueIndex}
+                p="0"
+                m="0"
+              >
+                <ChevronRightIcon />
+              </Button>
+            </HStack>
           </div>
-        ) : (
-          <div
-            style={{
-              width: "47%",
-              aspectRatio: 2.87,
-              bottom: "-2%",
-              position: "relative",
-              alignItems: "center",
-              display: "flex",
-              flexDirection: "column",
-            }}
-          ></div>
-        )}
-      </MainPanel>
+          <MainPanelChild>
+            {loading ? (
+              <VStack justify="center" width="90%">
+                <Spinner color="white" marginBottom="2rem"></Spinner>
+
+                <Heading size="l">Loading...</Heading>
+              </VStack>
+            ) : (
+              <VStack px="4%">
+                <h3 style={{ fontSize: "15", fontWeight: "bold" }}>
+                  {getFocusedClue().level === 0
+                    ? "Instructions:"
+                    : isQrStage()
+                    ? "Use this 4-liner to figure out the next location:"
+                    : "Congrats you've reached the right location !"}
+                </h3>
+                <div
+                  style={{
+                    fontSize: 14,
+                    paddingTop: "12",
+                    overflowY: "scroll",
+                    fontStyle: "italic",
+                  }}
+                >
+                  {'"'}
+                  {parse(getFocusedClue().body)}
+                  {'"'}
+                </div>
+                <Spacer></Spacer>
+                {bottomWidget()}
+              </VStack>
+            )}
+          </MainPanelChild>
+          {shouldRenderButtonWidget() ? (
+            <div
+              style={{
+                width: "47%",
+                textAlign: "center",
+                aspectRatio: 2.87,
+                bottom: "-2%",
+                position: "relative",
+                backgroundSize: "contain",
+                backgroundClip: "border-box",
+                backgroundImage: `url(${BottomPanel})`,
+                backgroundRepeat: "no-repeat",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {buttonWidget()}
+            </div>
+          ) : (
+            <div
+              style={{
+                width: "47%",
+                aspectRatio: 2.87,
+                bottom: "-2%",
+                position: "relative",
+                alignItems: "center",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            ></div>
+          )}
+        </MainPanel>
+      )}
       <NewScanner
         show={showScanner}
         handleClose={setshowScanner}
