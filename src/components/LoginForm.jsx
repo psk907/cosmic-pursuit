@@ -29,7 +29,7 @@ export const LoginArea = () => {
 const LoginHeader = () => {
   return (
     <Box textAlign="center">
-      <Heading color={"white"} size="xl">
+      <Heading color={"white"} size="l">
         Welcome
       </Heading>
     </Box>

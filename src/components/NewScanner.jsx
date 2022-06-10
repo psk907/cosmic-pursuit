@@ -5,13 +5,13 @@ import { QrReader } from "react-qr-reader";
 import CircularWindow from "../assets/Circuar_Window.svg";
 import CloseIcon from "../assets/close_icon.svg";
 
-export const NewScanner = ({ show, handleClose, callback }) => {
+export const NewScanner = ({ show, handleClose, callbackFn }) => {
   const [data, setData] = useState();
 
   return (
     <Modal
       isOpen={show}
-      onRequestClose={handleClose}
+      onRequestClose={() => handleClose(false)}
       className="ReactModal__Overlay"
       overlayClassName="ReactModal__Overlay"
     >
@@ -58,12 +58,12 @@ export const NewScanner = ({ show, handleClose, callback }) => {
                 aspectRatio: 1,
               }}
               onResult={(result, error) => {
-                if (!!result) {
+                if (!!result && !data) {
                   console.log(result);
 
                   setData(result?.text);
-                  handleClose();
-                  callback(result.text);
+                  handleClose(false);
+                  return callbackFn(result.text);
                 }
 
                 if (!!error) {

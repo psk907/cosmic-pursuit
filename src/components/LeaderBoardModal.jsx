@@ -6,11 +6,13 @@ import {
   Center,
   Box,
   Table,
+  VStack,
   Thead,
   Tr,
   Th,
   Td,
   TableContainer,
+  Heading,
 } from "@chakra-ui/react";
 import CloseIcon from "../assets/close_icon.svg";
 import axios from "axios";
@@ -83,49 +85,50 @@ export const LeaderModal = ({ handleClose, show, iter, children }) => {
             justifyContent: "space-between",
           }}
         >
-          <Box
+          <IconButton
+            colorScheme="BlackAlpha"
+            isRound="true"
+            onClick={handleClose}
+            position="relative"
+            top="-3%"
+            right="45%"
+            zIndex="100"
+          >
+            <Image height="5vh" src={CloseIcon}></Image>
+          </IconButton>
+          <Heading>Leaderboard</Heading>
+          <VStack
             style={{
-              marginRight: "6%",
-              marginLeft: "6%",
-              paddingTop: "8 %",
-              paddingBottom: "8%",
+              marginRight: "8%",
+              marginLeft: "8%",
+              paddingTop: "4%",
+              marginBottom: "10%",
               display: "flex",
               height: "100%",
+              width: "80%",
               flexDirection: "column",
               alignItems: "center",
+              overflowY: "scroll",
             }}
           >
-            <IconButton
-              colorScheme="BlackAlpha"
-              isRound="true"
-              onClick={handleClose}
-              position="relative"
-              top="-7%"
-              right="50%"
-              zIndex="100"
-            >
-              <Image height="5vh" src={CloseIcon}></Image>
-            </IconButton>
             <Box display="none">
               {count.current === iter ? void 0 : (count.current = iter)}
             </Box>
-            <TableContainer>
-              <Table variant="simple">
-                <Thead>
-                  <Tr>
-                    <Th isNumeric color="white">
-                      Rank
-                    </Th>
-                    <Th color="white">Team</Th>
-                    <Th isNumeric color="white">
-                      Score
-                    </Th>
-                  </Tr>
-                  {boardState.map(SetTableRow)}
-                </Thead>
-              </Table>
-            </TableContainer>
-          </Box>
+            <Table variant="simple" overflowY="scroll">
+              <Thead>
+                <Tr>
+                  <Th isNumeric color="white">
+                    Rank
+                  </Th>
+                  <Th color="white">Team</Th>
+                  <Th isNumeric color="white">
+                    Score
+                  </Th>
+                </Tr>
+                {boardState.map(SetTableRow)}
+              </Thead>
+            </Table>
+          </VStack>
         </div>
       </Center>
     </Modal>
