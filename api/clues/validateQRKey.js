@@ -61,8 +61,8 @@ async function unlockNextClueBypass(
           clueId: followClue.clueId,
           level: followClue.level,
           isUnlocked: true,
-          crackedClue: false,
-          crackedRiddle: false,
+          crackedClue: true,
+          crackedRiddle: true,
           score: 0.0,
         });
       }
