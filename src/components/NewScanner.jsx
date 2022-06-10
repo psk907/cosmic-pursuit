@@ -54,7 +54,7 @@ export const NewScanner = ({ show, handleClose, callback }) => {
           >
             <QrReader
               constraints={{
-                facingMode: "rear",
+                facingMode: "environment",
                 aspectRatio: 1,
               }}
               onResult={(result, error) => {
