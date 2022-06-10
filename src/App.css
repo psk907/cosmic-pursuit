@@ -1,0 +1,17 @@
+.ReactModal__Overlay {
+    z-index: 99;
+    position: absolute;
+    margin-top: 1vh;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    /* background-image: url(./assets/stars_background2.gif); */
+    backdrop-filter: blur(6px);
+}
+
+.ReactModal__Content {
+    opacity: 1;
+
+}

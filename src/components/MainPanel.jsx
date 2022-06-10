@@ -1,4 +1,4 @@
-import MainWindow from "../assets/MainWindowBg.png";
+import MainWindow from "../assets/MainWindowBg.svg";
 
 /**
  * Renders the Panel Graphic with appropriate scaling and layout
@@ -9,7 +9,7 @@ const MainPanel = ({ children }) => {
       style={{
         width: "90vw",
         maxWidth: "500px",
-        textAlign: "center",
+        textAlign: "left",
         aspectRatio: 0.912,
         backgroundSize: "contain",
         backgroundClip: "border-box",

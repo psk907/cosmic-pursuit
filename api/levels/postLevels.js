@@ -16,7 +16,7 @@ module.exports = async function (req, res, db) {
     ];
     console.log(req.body);
     for (let param of params) {
-      if (!req.body[param]) {
+      if (!req.body[param] && req.body[param] !== 0) {
         res.status(400).send("Missing parameter in request body: " + param);
         return;
       }

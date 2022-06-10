@@ -63,6 +63,10 @@ module.exports = function (db) {
     require("./api/leaderboard/getLeaderboard")(req, res, db);
   });
 
+  app.get("/triggerInsertTeamsByCsv", (req, res) => {
+    require("./api/auth/registerWithCSV")(req, res, db);
+  })
+
   app.listen(PORT, () => {
     console.log(`STARDUST Game Server listening on port ${PORT}`);
   });
