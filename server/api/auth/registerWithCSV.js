@@ -1,4 +1,3 @@
-
 const { v4: uuidv4 } = require("uuid");
 
 async function register(req, db) {
@@ -22,8 +21,8 @@ async function register(req, db) {
 
     let uid = uuidv4();
     let exists = await db.collection("teams").findOne({ teamNo: teamNo });
-    if(exists){
-        return console.log({ message: "Team already exists" });
+    if (exists) {
+      return console.log({ message: "Team already exists" });
     }
     let teamData = {
       teamName: teamName,
@@ -33,8 +32,8 @@ async function register(req, db) {
       score: 0.0,
       unlockedClues: [
         {
-          clueId: "cid11",
-          level: 1,
+          clueId: "cid01",
+          level: 0,
           isUnlocked: true,
           crackedClue: false,
           crackedRiddle: false,
@@ -46,22 +45,22 @@ async function register(req, db) {
     let result = await db.collection("teams").insertOne(teamData);
 
     return console.log({ ...result, message: "Team added" });
-    
   } catch (err) {
     console.log(err);
   }
-};
-
-module.exports = async function (req,res,db){
-
-    // teamNo, teamName and password
-    let csv = require("csvtojson");
-    csv().fromFile(__dirname+"/sample.csv").then(async function (jsonObj) {
-        console.log(jsonObj);
-        console.log(req.body)
-        for(let team of jsonObj){
-            req.body = team;
-            await register(req,db);
-        }
-    });
 }
+
+module.exports = async function (req, res, db) {
+  // teamNo, teamName and password
+  let csv = require("csvtojson");
+  csv()
+    .fromFile(__dirname + "/sample.csv")
+    .then(async function (jsonObj) {
+      console.log(jsonObj);
+      console.log(req.body);
+      for (let team of jsonObj) {
+        req.body = team;
+        await register(req, db);
+      }
+    });
+};
