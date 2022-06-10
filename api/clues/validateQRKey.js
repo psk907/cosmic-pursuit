@@ -55,7 +55,7 @@ async function unlockNextClueBypass(
       if (riddleObj.followclueId) {
         let followClue = await db
           .collection("clues")
-          .findOne({ clueId: clueId });
+          .findOne({ clueId: riddleObj.followclueId });
         if (!followClue)
           return res.send("You've completed all challenges!! Wohooo !!!");
         team.unlockedClues.push({
