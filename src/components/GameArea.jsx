@@ -289,11 +289,8 @@ export const GameArea = () => {
       </MainPanel>
       <NewScanner
         show={showScanner}
-        handleClose={() => setshowScanner(false)}
-        callback={(val) => {
-          setScannedKey(val);
-          validateKey(val);
-        }}
+        handleClose={setshowScanner}
+        callbackFn={validateKey}
       ></NewScanner>
     </PageBackdrop>
   );
