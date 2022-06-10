@@ -32,6 +32,7 @@ async function unlockNextClueBypass(
   team,
   locationPoints,
   riddleObj,
+  level,
   clueId,
   scanKey,
   db,
@@ -61,8 +62,8 @@ async function unlockNextClueBypass(
           clueId: followClue.clueId,
           level: followClue.level,
           isUnlocked: true,
-          crackedClue: false,
-          crackedRiddle: false,
+          crackedClue: true,
+          crackedRiddle: true,
           score: 0.0,
         });
       }
@@ -127,6 +128,7 @@ async function checkIfClueBelongsToLevel(req, res, db) {
         team,
         level.locationPoints,
         riddleObj,
+        level,
         clueId,
         scanKey,
         db,

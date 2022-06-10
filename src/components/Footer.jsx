@@ -7,7 +7,7 @@ export const Footer = () => {
       w="100vw"
       alignItems="center"
       justifyContent="center"
-      pos="fixed"
+      pos="absolute"
       zIndex="100"
       bottom={0}
     >
