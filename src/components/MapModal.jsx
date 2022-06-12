@@ -8,8 +8,17 @@ import Frame from "../assets/Popup_Frame.svg";
 
 Modal.setAppElement("#root");
 
+/**
+ * Modal showing the map of the Treasure Hunt
+ * 
+ * The map can be panned and zoomed within the UI.
+ *
+ * @param {show} show value for show/hide of the modal
+ * @param {handleClose} handleClose action to be performed for closing the modal
+ 
+ * @returns a modal with the SVG Map in an interactive frame
+ */
 export const MapModal = ({ handleClose, show, children }) => {
-  // TODO: Add a black tint under the modal as an overlay
   return (
     <Modal
       isOpen={show}

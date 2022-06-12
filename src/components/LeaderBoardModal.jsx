@@ -1,25 +1,31 @@
-import React, { useState, useEffect, useRef } from "react";
-import Modal from "react-modal";
 import {
+  Box,
+  Center,
+  Heading,
   IconButton,
   Image,
-  Center,
-  Box,
   Table,
-  VStack,
+  Td,
+  Th,
   Thead,
   Tr,
-  Th,
-  Td,
-  TableContainer,
-  Heading,
+  VStack,
 } from "@chakra-ui/react";
-import CloseIcon from "../assets/close_icon.svg";
 import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import Modal from "react-modal";
+import CloseIcon from "../assets/close_icon.svg";
 import Frame from "../assets/Popup_Frame.svg";
 
 Modal.setAppElement("#root");
 
+/**
+ * Leaderboard for the contest
+ *
+ * @param {show} show value for show/hide of the modal
+ * @param {handleClose} handleClose action to be performed for closing the modal
+ 
+ */
 export const LeaderModal = ({ handleClose, show, iter, children }) => {
   const serverUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:5000";
   const [boardState, setboardState] = useState([]);

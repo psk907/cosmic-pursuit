@@ -5,7 +5,18 @@ import { QrReader } from "react-qr-reader";
 import CircularWindow from "../assets/Circuar_Window.svg";
 import CloseIcon from "../assets/close_icon.svg";
 
-export const NewScanner = ({ show, handleClose, callbackFn }) => {
+/**
+ * Modal with a QR Code Scanner
+ * 
+ * Uses the 'react-qr-reader' package, which has some limitations on Mobile devices.
+ * The modal closes and the callbackFn is called once a QR code is scanned.
+ *
+ * @param {show} show value for show/hide of the modal
+ * @param {handleClose} handleClose action to be performed for closing the modal
+ * @param {callbackFn} callbackFn Function to be called on pressing 'Submit'
+ 
+ */
+export const ScannerModal = ({ show, handleClose, callbackFn }) => {
   const [data, setData] = useState();
 
   return (

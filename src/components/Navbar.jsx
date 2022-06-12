@@ -25,7 +25,7 @@ export const Navbar = () => {
   };
 
   const showLeaderModal = (event) => {
-    setleaderCallNo(leaderCallNo + 1)
+    setleaderCallNo(leaderCallNo + 1);
     setshowLeader(true);
   };
 
@@ -87,8 +87,11 @@ export const Navbar = () => {
 
         <InfoModal show={showClue} handleClose={hideModal}></InfoModal>
         <MapModal show={showMap} handleClose={hideModal}></MapModal>
-        <LeaderModal show={showLeader} iter={leaderCallNo} handleClose={hideModal}></LeaderModal>
-
+        <LeaderModal
+          show={showLeader}
+          iter={leaderCallNo}
+          handleClose={hideModal}
+        ></LeaderModal>
       </Flex>
     </Flex>
   );

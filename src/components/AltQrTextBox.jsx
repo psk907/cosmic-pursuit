@@ -1,22 +1,27 @@
 import {
   Box,
+  Button,
   Center,
+  FormControl,
   IconButton,
   Image,
-  Button,
-  FormControl,
   Input,
 } from "@chakra-ui/react";
-
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { QrReader } from "react-qr-reader";
 import CircularWindow from "../assets/Circuar_Window.svg";
 import CloseIcon from "../assets/close_icon.svg";
 
+/**
+ * UI to input the QR Key in case the scanner doesn't work
+ *
+ * @param {show} show value for show/hide of the modal
+ * @param {handleClose} handleClose action to be performed for closing the modal
+ * @param {callbackFn} callbackFn Function to be called on pressing 'Submit'
+ * @returns a modal with a textbox to input the QrKey
+ */
 export const AltQrTextBox = ({ show, handleClose, callbackFn }) => {
-  const [data, setData] = useState();
-  const [password, setpassword] = useState("");
+  const [qrKey, setQrKey] = useState("");
   const [loading, setLoading] = useState(false);
   return (
     <Modal
@@ -65,8 +70,8 @@ export const AltQrTextBox = ({ show, handleClose, callbackFn }) => {
             {/* <Heading>QR CODE</Heading> */}
             <FormControl
               mt={4}
-              onChange={(event) => setpassword(event.target.value)}
-              value={password}
+              onChange={(event) => setQrKey(event.target.value)}
+              value={qrKey}
               isRequired
             >
               <h4 color={"white"}>Scan the QR and enter the code embedded</h4>
@@ -89,11 +94,11 @@ export const AltQrTextBox = ({ show, handleClose, callbackFn }) => {
                 colorScheme="white"
                 enabled={!loading}
                 onClick={() => {
-                  if (!password || password.length == 0) {
+                  if (!qrKey || qrKey.length == 0) {
                     alert("Please enter the code");
                   } else {
                     setLoading(true);
-                    return callbackFn(password);
+                    return callbackFn(qrKey);
                   }
                 }}
               >

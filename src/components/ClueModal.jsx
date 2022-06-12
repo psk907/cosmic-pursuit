@@ -13,6 +13,14 @@ import Frame from "../assets/Popup_Frame.svg";
 
 Modal.setAppElement("#root");
 
+/**
+ * Modal window showing the Rules of the contest
+ *
+ * @param {show} show value for show/hide of the modal
+ * @param {handleClose} handleClose action to be performed for closing the modal
+ *
+ * @returns a modal with text as the rules
+ */
 export const InfoModal = ({ handleClose, show, children }) => {
   return (
     <Modal

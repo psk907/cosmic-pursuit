@@ -15,13 +15,13 @@ import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import BottomPanel from "../assets/Bottom_Widget.svg";
+import Disqualified from "../assets/DEAD.svg";
 import TopPanel from "../assets/Top_Widget.svg";
 import { AltQrTextBox } from "./AltQrTextBox";
 import MainPanel from "./MainPanel";
 import MainPanelChild from "./MainPanelChild";
-import { NewScanner } from "./NewScanner";
 import PageBackdrop from "./PageBackdrop";
-import Disqualified from "../assets/DEAD.svg";
+import { ScannerModal } from "./ScannerModal";
 
 export const GameArea = () => {
   const [gameState, setgameState] = useState({});
@@ -143,6 +143,7 @@ export const GameArea = () => {
   const shouldRenderButtonWidget = () => {
     return isQrStage() || isRiddleStage();
   };
+
   const buttonWidget = () => {
     if (isQrStage()) {
       return (
@@ -223,10 +224,8 @@ export const GameArea = () => {
       {!loading && gameState.isEliminated === true ? (
         <div
           style={{
-            width: "80.92%",
+            width: "85%",
             maxWidth: "600px",
-            height: "90%",
-            top: "25%",
             position: "absolute",
             textAlign: "center",
             aspectRatio: 5.28,
@@ -235,7 +234,7 @@ export const GameArea = () => {
             backgroundClip: "border-box",
             backgroundImage: `url(${Disqualified})`,
             backgroundRepeat: "no-repeat",
-            padding: "20% 12%",
+            padding: "20% 14%",
           }}
         >
           <Heading size="l">YOU ARE ELIMINATED !!</Heading>
@@ -246,6 +245,17 @@ export const GameArea = () => {
             <br />
             Thank you for your participation !!
           </p>
+          <div
+            style={{
+              width: "47%",
+              aspectRatio: 2.87,
+              bottom: "-2%",
+              position: "relative",
+              alignItems: "center",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          ></div>
         </div>
       ) : (
         <MainPanel>
@@ -266,7 +276,6 @@ export const GameArea = () => {
               <Button variant="unstyled" onClick={decrementClueIndex}>
                 <ChevronLeftIcon />
               </Button>
-              {/* <Spacer></Spacer> */}
               <Text style={{ fontSize: "10", fontWeight: "bold" }}>
                 {!loading ? getFocusedClue().title : ""}
               </Text>
@@ -347,11 +356,11 @@ export const GameArea = () => {
           )}
         </MainPanel>
       )}
-      <NewScanner
+      <ScannerModal
         show={showScanner}
         handleClose={setshowScanner}
         callbackFn={validateKey}
-      ></NewScanner>
+      ></ScannerModal>
       <AltQrTextBox
         show={showAltQrTextBox}
         handleClose={setshowAltQrTextBox}
