@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Center,
   FormControl,
   FormLabel,
   Heading,
@@ -8,6 +9,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { HelpModal } from "./helpModal";
+
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import MainPanel from "./MainPanel";
@@ -17,7 +20,7 @@ export const LoginArea = () => {
   return (
     <MainPanel>
       <MainPanelChild>
-        <VStack height="90%" width="90%" justify="center" pt="30%">
+        <VStack height="97%" width="90%" justify="center" pt="30%">
           <LoginHeader />
           <LoginForm />
         </VStack>
@@ -40,6 +43,7 @@ const LoginForm = () => {
   const [teamId, setteamId] = useState();
   const [password, setpassword] = useState();
   const navigate = useNavigate();
+  const [showHelp, setshowHelp] = useState(false);
 
   const axios = require("axios").default;
   const serverUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:5000";
@@ -52,6 +56,15 @@ const LoginForm = () => {
   //   console.log("Already logged in!");
   //   <Navigate to="/play" />;
   // }
+
+  const showHelpModal = (event) => {
+    event.preventDefault();
+    setshowHelp(true);
+  };
+
+  const hideModal = (event) => {
+    setshowHelp(false);
+  };
 
   function handleLogin(event) {
     event.preventDefault();
@@ -145,8 +158,22 @@ const LoginForm = () => {
           >
             Sign In
           </Button>
+          <Center pt="1rem">
+            <button
+              onClick={showHelpModal}
+              style={{
+                textDecoration: "underline",
+                alignItems: "center",
+                fontSize: 10,
+              }}
+            >
+              {" "}
+              Tap for help
+            </button>
+          </Center>
         </form>
       )}
+      <HelpModal show={showHelp} handleClose={hideModal}></HelpModal>
     </Box>
   );
 };
