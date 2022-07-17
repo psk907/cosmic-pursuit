@@ -68,7 +68,14 @@ This repository contains the source code to the website and server used as the c
      ```
     >Runs the server in the development mode at [http://localhost:5000](http://localhost:5000).
 
-## Development Team
+## Idea & Concept
+
+- Reesha Shenoy
+	- Design Head @ Non-Tech Team - RIT STARDUST
+	- GitHub: [@reeshaa](https://github.com/reeshaa/)
+	- LinkedIn: [@reesha-shenoy](https://www.linkedin.com/in/reesha-shenoy/)
+
+## Design & Development
 
 1. Suraj Kumar P 
 	- GitHub: [@psk907](https://github.com/psk907/)
