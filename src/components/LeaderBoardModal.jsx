@@ -27,7 +27,7 @@ Modal.setAppElement("#root");
  
  */
 export const LeaderModal = ({ handleClose, show, iter, children }) => {
-  const serverUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:5000";
+  const serverUrl = process.env.REACT_APP_SERVER_URL || "";
   const [boardState, setboardState] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const count = useRef(0);

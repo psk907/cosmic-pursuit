@@ -46,7 +46,7 @@ const LoginForm = () => {
   const [showHelp, setshowHelp] = useState(false);
 
   const axios = require("axios").default;
-  const serverUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:5000";
+  const serverUrl = process.env.REACT_APP_SERVER_URL || "";
   const [isLoading, setLoading] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["uid"]);
 

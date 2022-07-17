@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 var bodyParser = require("body-parser");
+const path = require("path");
 const PORT = process.env.PORT || 5000;
 
 // parse application/x-www-form-urlencoded
@@ -13,10 +14,6 @@ app.use(cors());
 // A random key for signing the cookie
 
 module.exports = function (db) {
-  app.get("/", (req, res) => {
-    res.send("Hello World!");
-  });
-
   /// Auth APIs
   app.post("/auth/login", (req, res) =>
     require("./api/auth/login")(req, res, db)
@@ -66,6 +63,18 @@ module.exports = function (db) {
   app.get("/triggerInsertTeamsByCsv", (req, res) => {
     require("./api/auth/registerWithCSV")(req, res, db);
   });
+
+  if (process.env.NODE_ENV === "production") {
+    app.use(express.static("../build/"));
+    app.get("*", (req, res) => {
+      console.log(__dirname);
+      res.sendFile(path.resolve("../" + "build", "index.html"));
+    });
+  } else {
+    app.get("/", (req, res) => {
+      res.send("Cosmic Pursuit Server running");
+    });
+  }
 
   app.listen(PORT, () => {
     console.log(`STARDUST Game Server listening on port ${PORT}`);

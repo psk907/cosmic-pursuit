@@ -33,7 +33,7 @@ export const GameArea = () => {
   const [cookies] = useCookies(["uid"]);
   const [refreshCount, setrefreshCount] = useState(0);
   const [clueIndex, setclueIndex] = useState(0);
-  const serverUrl = process.env.REACT_APP_SERVER_URL || "http://localhost:5000";
+  const serverUrl = process.env.REACT_APP_SERVER_URL || "";
 
   useEffect(() => {
     let uid = cookies["uid"];
